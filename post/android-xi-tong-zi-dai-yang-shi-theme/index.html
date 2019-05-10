@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Android系统自带样式theme | Galiful_Notes</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1557477208805">
+<link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://galiful.github.io/Resume/">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1557477208805" class="site-logo">
+        <h1 class="site-title">Galiful_Notes</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://galiful.github.io/Resume/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Android系统自带样式theme</h2>
+            <div class="post-date">2019-01-07</div>
+            
+            <div class="post-content">
+              <p>Android系统自带样式</p>
+<pre><code>android:theme = &quot;@android:style/Theme.Dialog&quot; 将一个Activity显示为对话框模式
+
+android:theme = &quot;@android:style/Theme.NoTitleBar&quot; 不显示应用程序标题栏
+
+android:theme = &quot;@android:style/Theme.NoTitleBar.Fullscreen&quot; 不显示应用程序标题栏，并全屏
+
+android:theme = &quot;Theme.Light&quot; 背景为白色
+
+andorid:theme = &quot;Theme.Light.NoTitleBar&quot; 白色背景并无标题栏
+
+android:theme = &quot;Theme.Black&quot; 背景为黑色
+
+android:theme = &quot;Theme.Black.NoTitleBar&quot; 黑色背景并无标题栏
+
+android:theme = &quot;Theme.Black.NoTitleBar.Fullscreen&quot; 黑色背景，无标题栏，全屏
+
+android:theme = &quot;Theme.Wallpaper&quot; 用系统桌面为应用程序背景
+
+android:theme = &quot;Theme.Wallpaper.NoTitleBar&quot; 用系统桌面为应用程序背景，且无标题栏
+
+android:theme = &quot;Theme.Wallpaper.NoTitleBar.Fullscreen&quot; 用系统桌面为应用程序背景，无标题栏，全屏
+
+android:theme = &quot;Translucent&quot; 透明背景
+
+android:theme = &quot;Theme.Translucent.NoTitleBar&quot; 透明背景并无标题
+
+android:theme = &quot;Theme.Translucent.NoTitleBar.Fullscreen&quot; 透明背景并无标题，全屏
+
+android:theme = &quot;Theme.Panel&quot; 面板风格显示
+
+android:theme = &quot;Theme.Light.Panel&quot; 平板风格显示
+</code></pre>
+<hr>
+<p>注当我们需要设置全屏的时候，可能会在manifast中设置<code>android:theme=&quot;@android:style/Theme.Light.NoTitleBar.Fullscreen&quot;</code></p>
+<p>然后程序可能会崩溃</p>
+<p>原因很简单，看一下你的Activity是不是继承的AppCompatActivity</p>
+<p>如果是的话改成继承Activity就好了</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://galiful.github.io/Resume//tag/q-BOAHw9o" class="tag">
+                    Android
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/androiddrawerlayoutnavigationview-shi-xian-chen-jin-shi-ce-hua-cai-dan">
+                  <h3 class="post-title">
+                    Android+DrawerLayout+NavigationView实现沉浸式侧滑菜单
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>module中implementation的包没法引用 | Galiful_Notes</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1557477208805">
+<link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://galiful.github.io/Resume/">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1557477208805" class="site-logo">
+        <h1 class="site-title">Galiful_Notes</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://galiful.github.io/Resume/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">module中implementation的包没法引用</h2>
+            <div class="post-date">2019-02-13</div>
+            
+            <div class="post-content">
+              <p>Android studio升级到3.0以上之后，插件版本（plugin version）也随之升级到了3.0.0版本或以上。</p>
+<p>工程中import的module中的dependencies 原来用的是compile，但在26还是28后强制使用implementation，所以你为了顺应潮流（安全）改成了implementation。但：</p>
+<p><strong>implementation指令</strong></p>
+<p>这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开</p>
+<p>所以你module中的类可以用，但jar怎么都引用不了，你开始慌了...</p>
+<p>正文：
+在3.0版本中，compile 指令被标注为过时方法，而新增了两个依赖指令，一个是implement 和api，这两个都可以进行依赖添加，但是有什么区别呢？</p>
+<p>新建工程默认生成的app的build.gradle文件中的依赖：</p>
+<pre><code>dependencies {
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+   implementation 'com.android.support:appcompat-v7:26.1.0'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+}
+</code></pre>
+<p><strong>[api 指令]</strong></p>
+<pre><code>    完全等同于compile指令，没区别，你将所有的compile改成api，完全没有错。
+</code></pre>
+<p><strong>[implementation指令]</strong></p>
+<pre><code>    这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开。
+</code></pre>
+<p>简单的说，就是使用implementation指令的依赖不会传递。</p>
+<p>例如，有一个module为testsdk，testsdk依赖于gson：</p>
+<p><code>implementation 'com.google.code.gson:gson:2.8.2'</code></p>
+<p>这时候，在testsdk里边的java代码是可以访问gson的。</p>
+<p>另一个module为app，app依赖于testsdk：</p>
+<p><code>implementation project(':testsdk')</code></p>
+<p>这时候，因为testsdk使用的是implementation 指令来依赖gson，所以app里边不能引用gson。
+但是，如果testsdk使用的是api来引用gson：</p>
+<p><code>api 'com.google.code.gson:gson:2.8.2'</code></p>
+<p>则与gradle3.0.0之前的compile指令的效果完全一样，app的module也可以引用gson。这就是api和implementation的区别。</p>
+<p>建议
+在Google IO 相关话题的中提到了一个建议，就是依赖首先应该设置为implementation的，如果没有错，那就用implementation，如果有错，那么使用api指令。使用implementation会使编译速度有所增快。</p>
+<p>原文：https://blog.csdn.net/mybook1122/article/details/78657392</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://galiful.github.io/Resume//tag/q-BOAHw9o" class="tag">
+                    Android
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/jsp-zai-tomcat-shang-bu-shu-he-yun-xing-yuan-li">
+                  <h3 class="post-title">
+                    jsp在tomcat上部署和运行原理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>MySql 安装后的基本操作 | Galiful_Notes</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1557477208805">
+<link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://galiful.github.io/Resume/">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1557477208805" class="site-logo">
+        <h1 class="site-title">Galiful_Notes</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://galiful.github.io/Resume/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">MySql 安装后的基本操作</h2>
+            <div class="post-date">2019-01-09</div>
+            
+            <div class="post-content">
+              <p>内容来自 http://www.runoob.com/mysql/mysql-tutorial.html 并整理</p>
+<p>MySQL 的配置文件：.ini</p>
+<p>[mysql]</p>
+<h1 id="设置mysql客户端默认字符集default-character-setutf8">设置mysql客户端默认字符集default-character-set=utf8</h1>
+<p>[mysqld]</p>
+<h1 id="设置3306端口port-3306">设置3306端口port = 3306</h1>
+<h1 id="设置mysql的安装目录basedircwebmysql-8011">设置mysql的安装目录basedir=C:\web\mysql-8.0.11</h1>
+<h1 id="设置-mysql数据库的数据的存放目录mysql-8-不需要以下配置系统自己生成即可否则有可能报错">设置 mysql数据库的数据的存放目录，MySQL 8+ 不需要以下配置，系统自己生成即可，否则有可能报错</h1>
+<h1 id="datadircwebsqldata">datadir=C:\web\sqldata</h1>
+<h1 id="允许最大连接数max_connections20">允许最大连接数max_connections=20</h1>
+<h1 id="服务端使用的字符集默认为8比特编码的latin1字符集character-set-serverutf8">服务端使用的字符集默认为8比特编码的latin1字符集character-set-server=utf8</h1>
+<h1 id="创建新表时将使用的默认存储引擎default-storage-engineinnodb">创建新表时将使用的默认存储引擎default-storage-engine=INNODB</h1>
+<p>登录 MySQL</p>
+<p><code>mysql -h 主机名 -u 用户名 -p</code></p>
+<p>参数说明：</p>
+<p>-h : 指定客户端所要登录的 MySQL 主机名（host）, 登录本机(localhost 或 127.0.0。1)该参数可以省略;</p>
+<p>-u : 登录的用户名（user）;</p>
+<p>-p : 告诉服务器将会使用一个密码来登录, 如果所要登录的用户名密码为空, 可以忽略此选项。</p>
+<p>如果我们要登录本机的 MySQL 数据库，只需要输入以下命令即可：</p>
+<pre><code>mysql -u root -p
+
+Enter password:
+</code></pre>
+<p>启动：</p>
+<p><code>mysqld --console（：控制台）</code></p>
+<p>关闭：</p>
+<p><code>mysqladmin -uroot shutdown</code></p>
+<p>MySQL 用户设置</p>
+<p>如果你需要添加 MySQL 用户，你只需要在 mysql 数据库中的 user 表添加新用户即可。</p>
+<p>以下为添加用户的的实例，用户名为guest，密码为guest123，并授权用户可进行 SELECT, INSERT 和 UPDATE操作权限：</p>
+<pre><code>
+root@host# mysql -u root -p
+
+Enter password:*******                       //登录
+
+mysql&gt; use mysql;
+
+Database changed                          //选择建立的mysql数据库，并进入 
+
+mysql&gt; INSERT INTO user                  //插入用户信息
+
+          (host, user, password,
+
+          select_priv, insert_priv, update_priv)
+
+          VALUES ('localhost', 'guest',
+
+          PASSWORD('guest123'), 'Y', 'Y', 'Y');
+
+Query OK, 1 row affected (0.20 sec)                   //完成
+
+mysql&gt; FLUSH PRIVILEGES;                           // 更新权限
+
+Query OK, 1 row affected (0.01 sec)                   //完成
+
+mysql&gt; SELECT host, user, password FROM user WHERE user = 'guest';    // 查找
+</code></pre>
+<p>+-----------+---------+------------------+</p>
+<p>| host      | user    | password        |</p>
+<p>+-----------+---------+------------------+</p>
+<p>| localhost | guest | 6f8c114b58f2ce9e |</p>
+<p>+-----------+---------+------------------+</p>
+<p>1 row in set (0.00 sec)</p>
+<pre><code>注意:使用MySQL提供的 PASSWORD() 函数来对密码进行加密。 你可以在以上实例看到用户密码加密后为： 6f8c114b58f2ce9e.
+
+注意：在 MySQL5.7 中 user 表的 password 已换成了authentication_string。
+
+注意：password() 加密函数已经在 8.0.11 中移除了，可以使用 MD5() 函数代替。
+
+注意：在注意需要执行 FLUSH PRIVILEGES 语句。 这个命令执行后会重新载入授权表。
+</code></pre>
+<p>如果你不使用该命令，你就无法使用新创建的用户来连接mysql服务器，除非你重启mysql服务器。</p>
+<p>你可以在创建用户时，为用户指定权限，在对应的权限列中，在插入语句中设置为 'Y' 即可，用户权限列表如下：</p>
+<pre><code>
+Select_priv
+
+Insert_priv
+
+Update_priv
+
+Delete_priv
+
+Create_priv
+
+Drop_priv
+
+Reload_priv
+
+Shutdown_priv
+
+Process_priv
+
+File_priv
+
+Grant_priv
+
+References_priv
+
+Index_priv
+
+Alter_priv
+</code></pre>
+<p>另外一种添加用户的方法为通过SQL的 GRANT 命令，以下命令会给指定数据库TUTORIALS添加用户 zara ，密码为 zara123 。</p>
+<pre><code>root@host# mysql -u root -p
+Enter password:*******
+mysql&gt; use mysql;
+Database changed
+mysql&gt; GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP
+    -&gt; ON TUTORIALS.*    
+    -&gt; TO 'zara'@'localhost'   
+    -&gt; IDENTIFIED BY 'zara123';
+</code></pre>
+<p>以上命令会在mysql数据库中的user表创建一条用户信息记录。</p>
+<p>注意: MySQL 的SQL语句以分号 (;) 作为结束标识。</p>
+<p>管理MySQL的命令</p>
+<p>选择要操作的Mysql数据库，使用该命令后所有Mysql命令都只针对该数据库。</p>
+<pre><code>mysql&gt; use RUNOOB;
+Database changed
+</code></pre>
+<p>列出 MySQL 数据库管理系统的数据库列表。</p>
+<p><code>SHOW DATABASES:</code></p>
+<p>显示指定数据库的所有表，使用该命令前需要使用 use 命令来选择要操作的数据库。</p>
+<p><code>SHOW TABLES:</code></p>
+<p>显示数据表的属性，属性类型，主键信息 ，是否为 NULL，默认值等其他信息。</p>
+<pre><code>SHOW COLUMNS FROM 数据表名:
+</code></pre>
+<p>显示数据表的详细索引信息，包括PRIMARY KEY（主键）。</p>
+<p><code>SHOW INDEX FROM 数据表:</code></p>
+<p>将输出Mysql数据库管理系统的性能及统计信息。</p>
+<p>SHOW TABLE STATUS LIKE [FROM db_name] [LIKE 'pattern'] \G:</p>
+<p>例：</p>
+<p>mysql&gt; SHOW TABLE STATUS FROM RUNOOB;</p>
+<h1 id="显示数据库-runoob-中所有表的信息">显示数据库 RUNOOB 中所有表的信息</h1>
+<p>mysql&gt; SHOW TABLE STATUS from RUNOOB LIKE 'runoob%';</p>
+<h1 id="表名以runoob开头的表的信息">表名以runoob开头的表的信息</h1>
+<p>mysql&gt; SHOW TABLE STATUS from RUNOOB LIKE 'runoob%'\G;</p>
+<h1 id="加上-g查询结果按列打印">加上 \G，查询结果按列打印</h1>
+<p>待续...</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://galiful.github.io/Resume//tag/qpSl6G65A" class="tag">
+                    Mysql
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/android-xi-tong-zi-dai-yang-shi-theme">
+                  <h3 class="post-title">
+                    Android系统自带样式theme
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

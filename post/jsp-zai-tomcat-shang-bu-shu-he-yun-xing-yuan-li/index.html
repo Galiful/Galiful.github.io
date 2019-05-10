@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>jsp在tomcat上部署和运行原理 | Galiful_Notes</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1557477208805">
+<link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://galiful.github.io/Resume/">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1557477208805" class="site-logo">
+        <h1 class="site-title">Galiful_Notes</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://galiful.github.io/Resume/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">jsp在tomcat上部署和运行原理</h2>
+            <div class="post-date">2019-01-24</div>
+            
+            <div class="post-content">
+              <p>原文：</p>
+<p>https://blog.csdn.net/bule_sky_wait_me/article/details/71105230</p>
+<p>四、JSP的运行原理：</p>
+<p>只有当客户端第一次请求JSP时，才需要将其转换、编译（所以第二次浏览同样的网页时，速度会更快）</p>
+<p>Web服务器在遇到访问JSP网页的请求时，首先执行其中的程序片段，然后将执行结果以HTML格式返回给客户。</p>
+<p>程序片段可以操作数据库、重新定向网页以及发送email等等，这就是建立动态网站所需要的功能。</p>
+<p>所有程序操作都在服务器端执行，网络上传送给客户端的仅是得到的结果，对客户浏览器的要求最低。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://galiful.github.io/Resume//tag/cMZtF7ndY" class="tag">
+                    Jsp
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/mysql-yu-jdbc-bi-ji">
+                  <h3 class="post-title">
+                    Mysql 与 JDBC 笔记
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

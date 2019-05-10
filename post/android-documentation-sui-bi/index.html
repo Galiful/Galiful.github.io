@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Android Documentation 随笔 | Galiful_Notes</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1557477208805">
+<link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://galiful.github.io/Resume/">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1557477208805" class="site-logo">
+        <h1 class="site-title">Galiful_Notes</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://galiful.github.io/Resume/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Android Documentation 随笔</h2>
+            <div class="post-date">2019-04-18</div>
+            
+            <div class="post-content">
+              <p><strong>Dialog</strong> 类是对话框的基类，但您应该避免直接实例化 Dialog，而是使用下列子类之一：</p>
+<p><strong>AlertDialog</strong></p>
+<p>此对话框可显示标题、最多三个按钮、可选择项列表或自定义布局。</p>
+<p>DatePickerDialog 或 TimePickerDialog</p>
+<p>此对话框带有允许用户选择日期或时间的预定义 UI。</p>
+<p><strong>避免使用 ProgressDialog</strong></p>
+<p>Android 包括另一种名为 ProgressDialog 的对话框类，可显示具有进度条的对话框。不过，如需指示加载进度或不确定的进度，则应改为遵循进度和 Activity 的设计指南，并在您的布局中使用 ProgressBar。</p>
+<p>提示：默认情况下，当您将 EditText 元素设置为使用 &quot;textPassword&quot; 输入类型时，字体系列将设置为固定宽度。因此，您应该将其字体系列更改为 &quot;sans-serif&quot;，以便两个文本字段都使用匹配的字体样式。</p>
+<p>提示：如·果您想要自定义对话框，可以改用对话框的形式显示 Activity，而不是使用 Dialog API。 只需创建一个 Activity，并在 <activity> 清单文件元素中将其主题设置为 Theme.Holo.Dialog：</p>
+<p><code>&lt;activity android:theme=&quot;@android:style/Theme.Holo.Dialog&quot; &gt;</code></p>
+<p>就这么简单。Activity 现在会显示在一个对话框窗口中，而非全屏显示。</p>
+<p>要想仅在大屏幕上将 Activity 显示为对话框，请将 Theme.Holo.DialogWhenLarge 主题应用于 <activity> 清单文件元素：</p>
+<p><code>&lt;activity android:theme=&quot;@android:style/Theme.Holo.DialogWhenLarge&quot; &gt;</code></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://galiful.github.io/Resume//tag/q-BOAHw9o" class="tag">
+                    Android
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/android-zhong-jian-dan-shi-xian-8-chong-dialog">
+                  <h3 class="post-title">
+                    Android 中简单实现8种Dialog
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

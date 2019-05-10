@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Android 中简单实现8种Dialog | Galiful_Notes</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1557477208805">
+<link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://galiful.github.io/Resume/">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1557477208805" class="site-logo">
+        <h1 class="site-title">Galiful_Notes</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://galiful.github.io/Resume/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Android 中简单实现8种Dialog</h2>
+            <div class="post-date">2019-04-18</div>
+            
+            <div class="post-content">
+              <p>出处：<a href="https://www.cnblogs.com/gzdaijie/p/5222191.html">https://www.cnblogs.com/gzdaijie/p/5222191.html</a></p>
+<h2 id="1写在前面">1.写在前面</h2>
+<ul>
+<li>Android提供了丰富的<code>Dialog</code>函数，本文介绍最常用的8种对话框的使用方法，包括普通（包含提示消息和按钮）、列表、单选、多选、等待、进度条、编辑、自定义等多种形式，将在第2部分介绍。</li>
+<li>有时，我们希望在对话框创建或关闭时完成一些特定的功能，这需要<code>复写</code>Dialog的<code>create()</code>、<code>show()</code>、<code>dismiss()</code>等方法，将在第3部分介绍。</li>
+</ul>
+<h2 id="2代码示例">2.代码示例</h2>
+<p><img src="http://upload-images.jianshu.io/upload_images/15775879-734b1a8a288c181f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片示例"></p>
+<h3 id="21-普通dialog图1与图2">2.1 普通Dialog（图1与图2）</h3>
+<ul>
+<li><strong>2个按钮</strong></li>
+</ul>
+<pre><code>public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button buttonNormal = (Button) findViewById(R.id.button_normal);
+        buttonNormal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNormalDialog();
+            }
+        });
+    }
+
+    private void showNormalDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog = 
+            new AlertDialog.Builder(MainActivity.this);
+        normalDialog.setIcon(R.drawable.icon_dialog);
+        normalDialog.setTitle(&quot;我是一个普通Dialog&quot;)
+        normalDialog.setMessage(&quot;你要点击哪一个按钮呢?&quot;);
+        normalDialog.setPositiveButton(&quot;确定&quot;, 
+            new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //...To-do
+            }
+        });
+        normalDialog.setNegativeButton(&quot;关闭&quot;, 
+            new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //...To-do
+            }
+        });
+        // 显示
+        normalDialog.show();
+    }
+}
+</code></pre>
+<ul>
+<li><strong>3个按钮</strong></li>
+</ul>
+<pre><code>/* @setNeutralButton 设置中间的按钮
+ * 若只需一个按钮，仅设置 setPositiveButton 即可
+ */
+private void showMultiBtnDialog(){
+    AlertDialog.Builder normalDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    normalDialog.setIcon(R.drawable.icon_dialog);
+    normalDialog.setTitle(&quot;我是一个普通Dialog&quot;).setMessage(&quot;你要点击哪一个按钮呢?&quot;);
+    normalDialog.setPositiveButton(&quot;按钮1&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // ...To-do
+        }
+    });
+    normalDialog.setNeutralButton(&quot;按钮2&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // ...To-do
+        }
+    });
+    normalDialog.setNegativeButton(&quot;按钮3&quot;, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // ...To-do
+        }
+    });
+    // 创建实例并显示
+    normalDialog.show();
+}
+
+</code></pre>
+<h3 id="22-列表dialog图3">2.2 列表Dialog（图3）</h3>
+<pre><code>private void showListDialog() {
+    final String[] items = { &quot;我是1&quot;,&quot;我是2&quot;,&quot;我是3&quot;,&quot;我是4&quot; };
+    AlertDialog.Builder listDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    listDialog.setTitle(&quot;我是一个列表Dialog&quot;);
+    listDialog.setItems(items, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // which 下标从0开始
+            // ...To-do
+            Toast.makeText(MainActivity.this, 
+                &quot;你点击了&quot; + items[which], 
+                Toast.LENGTH_SHORT).show();
+        }
+    });
+    listDialog.show();
+}
+</code></pre>
+<h3 id="23-单选dialog图4">2.3 单选Dialog（图4）</h3>
+<pre><code>int yourChoice;
+private void showSingleChoiceDialog(){
+    final String[] items = { &quot;我是1&quot;,&quot;我是2&quot;,&quot;我是3&quot;,&quot;我是4&quot; };
+    yourChoice = -1;
+    AlertDialog.Builder singleChoiceDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    singleChoiceDialog.setTitle(&quot;我是一个单选Dialog&quot;);
+    // 第二个参数是默认选项，此处设置为0
+    singleChoiceDialog.setSingleChoiceItems(items, 0, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            yourChoice = which;
+        }
+    });
+    singleChoiceDialog.setPositiveButton(&quot;确定&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (yourChoice != -1) {
+                Toast.makeText(MainActivity.this, 
+                &quot;你选择了&quot; + items[yourChoice], 
+                Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
+    singleChoiceDialog.show();
+}
+</code></pre>
+<h3 id="24-多选dialog图5">2.4 多选Dialog（图5）</h3>
+<pre><code>ArrayList&lt;Integer&gt; yourChoices = new ArrayList&lt;&gt;();
+private void showMultiChoiceDialog() {
+    final String[] items = { &quot;我是1&quot;,&quot;我是2&quot;,&quot;我是3&quot;,&quot;我是4&quot; };
+    // 设置默认选中的选项，全为false默认均未选中
+    final boolean initChoiceSets[]={false,false,false,false};
+    yourChoices.clear();
+    AlertDialog.Builder multiChoiceDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    multiChoiceDialog.setTitle(&quot;我是一个多选Dialog&quot;);
+    multiChoiceDialog.setMultiChoiceItems(items, initChoiceSets,
+        new DialogInterface.OnMultiChoiceClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which,
+            boolean isChecked) {
+            if (isChecked) {
+                yourChoices.add(which);
+            } else {
+                yourChoices.remove(which);
+            }
+        }
+    });
+    multiChoiceDialog.setPositiveButton(&quot;确定&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            int size = yourChoices.size();
+            String str = &quot;&quot;;
+            for (int i = 0; i &lt; size; i++) {
+                str += items[yourChoices.get(i)] + &quot; &quot;;
+            }
+            Toast.makeText(MainActivity.this, 
+                &quot;你选中了&quot; + str, 
+                Toast.LENGTH_SHORT).show();
+        }
+    });
+    multiChoiceDialog.show();
+}
+</code></pre>
+<h3 id="25-等待dialog图6">2.5 等待Dialog（图6）</h3>
+<pre><code>private void showWaitingDialog() {
+    /* 等待Dialog具有屏蔽其他控件的交互能力
+     * @setCancelable 为使屏幕不可点击，设置为不可取消(false)
+     * 下载等事件完成后，主动调用函数关闭该Dialog
+     */
+    ProgressDialog waitingDialog= 
+        new ProgressDialog(MainActivity.this);
+    waitingDialog.setTitle(&quot;我是一个等待Dialog&quot;);
+    waitingDialog.setMessage(&quot;等待中...&quot;);
+    waitingDialog.setIndeterminate(true);
+    waitingDialog.setCancelable(false);
+    waitingDialog.show();
+}
+</code></pre>
+<h3 id="26-进度条dialog图7">2.6 进度条Dialog（图7）</h3>
+<pre><code>private void showProgressDialog() {
+    /* @setProgress 设置初始进度
+     * @setProgressStyle 设置样式（水平进度条）
+     * @setMax 设置进度最大值
+     */
+    final int MAX_PROGRESS = 100;
+    final ProgressDialog progressDialog = 
+        new ProgressDialog(MainActivity.this);
+    progressDialog.setProgress(0);
+    progressDialog.setTitle(&quot;我是一个进度条Dialog&quot;);
+    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+    progressDialog.setMax(MAX_PROGRESS);
+    progressDialog.show();
+    /* 模拟进度增加的过程
+     * 新开一个线程，每个100ms，进度增加1
+     */
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            int progress= 0;
+            while (progress &lt; MAX_PROGRESS){
+                try {
+                    Thread.sleep(100);
+                    progress++;
+                    progressDialog.setProgress(progress);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            // 进度达到最大值后，窗口消失
+            progressDialog.cancel();
+        }
+    }).start();
+}
+</code></pre>
+<h3 id="27-编辑dialog图8">2.7 编辑Dialog（图8）</h3>
+<pre><code>private void showInputDialog() {
+    /*@setView 装入一个EditView
+     */
+    final EditText editText = new EditText(MainActivity.this);
+    AlertDialog.Builder inputDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    inputDialog.setTitle(&quot;我是一个输入Dialog&quot;).setView(editText);
+    inputDialog.setPositiveButton(&quot;确定&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            Toast.makeText(MainActivity.this,
+            editText.getText().toString(), 
+            Toast.LENGTH_SHORT).show();
+        }
+    }).show();
+}
+</code></pre>
+<h3 id="28-自定义dialog图9">2.8 自定义Dialog（图9）</h3>
+<pre><code>&lt;!-- res/layout/dialog_customize.xml--&gt;
+&lt;!-- 自定义View --&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation=&quot;vertical&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+    &lt;EditText
+        android:id=&quot;@+id/edit_text&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot; 
+        /&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+<pre><code>private void showCustomizeDialog() {
+    /* @setView 装入自定义View ==&gt; R.layout.dialog_customize
+     * 由于dialog_customize.xml只放置了一个EditView，因此和图8一样
+     * dialog_customize.xml可自定义更复杂的View
+     */
+    AlertDialog.Builder customizeDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    final View dialogView = LayoutInflater.from(MainActivity.this)
+        .inflate(R.layout.dialog_customize,null);
+    customizeDialog.setTitle(&quot;我是一个自定义Dialog&quot;);
+    customizeDialog.setView(dialogView);
+    customizeDialog.setPositiveButton(&quot;确定&quot;,
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // 获取EditView中的输入内容
+            EditText edit_text = 
+                (EditText) dialogView.findViewById(R.id.edit_text);
+            Toast.makeText(MainActivity.this,
+                edit_text.getText().toString(),
+                Toast.LENGTH_SHORT).show();
+        }
+    });
+    customizeDialog.show();
+}
+</code></pre>
+<h2 id="3复写回调函数">3.复写回调函数</h2>
+<pre><code>/* 复写Builder的create和show函数，可以在Dialog显示前实现必要设置
+ * 例如初始化列表、默认选项等
+ * @create 第一次创建时调用
+ * @show 每次显示时调用
+ */
+private void showListDialog() {
+    final String[] items = { &quot;我是1&quot;,&quot;我是2&quot;,&quot;我是3&quot;,&quot;我是4&quot; };
+    AlertDialog.Builder listDialog = 
+        new AlertDialog.Builder(MainActivity.this){
+
+        @Override
+        public AlertDialog create() {
+            items[0] = &quot;我是No.1&quot;;
+            return super.create();
+        }
+
+        @Override
+        public AlertDialog show() {
+            items[1] = &quot;我是No.2&quot;;
+            return super.show();
+        }
+    };
+    listDialog.setTitle(&quot;我是一个列表Dialog&quot;);
+    listDialog.setItems(items, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // ...To-do
+        }
+    });
+    /* @setOnDismissListener Dialog销毁时调用
+     * @setOnCancelListener Dialog关闭时调用
+     */
+    listDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        public void onDismiss(DialogInterface dialog) {
+            Toast.makeText(getApplicationContext(),
+                &quot;Dialog被销毁了&quot;, 
+                Toast.LENGTH_SHORT).show();
+        }
+    });
+    listDialog.show();
+}
+</code></pre>
+<h2 id="另外可继承dialog类实现更多除布局以外更多的动作">另外可继承Dialog类实现更多除布局以外更多的动作</h2>
+<pre><code>setContentView(R.layout.common_dialog_layout);
+        //按空白处不能取消动画
+        setCanceledOnTouchOutside(false);
+        //初始化界面控件
+        initView();
+        //初始化界面数据
+        refreshView();
+        //初始化界面控件的事件
+        initEvent();
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://galiful.github.io/Resume//tag/q-BOAHw9o" class="tag">
+                    Android
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/github-shang-de-license-xu-ke-zheng">
+                  <h3 class="post-title">
+                    github上的license-许可证
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
