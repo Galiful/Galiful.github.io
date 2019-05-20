@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Android+DrawerLayout+NavigationView实现沉浸式侧滑菜单 | Galiful</title>
+<title>集成gitalk评论 | Galiful</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -97,29 +97,25 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Android+DrawerLayout+NavigationView实现沉浸式侧滑菜单</h2>
-            <div class="post-date">2019-01-07</div>
-            
-              <div class="feature-container" style="background-image: url('https://galiful.github.io/Resume//post-images/androiddrawerlayoutnavigationview-shi-xian-chen-jin-shi-ce-hua-cai-dan.png')">
-              </div>
+            <h2 class="post-title">集成gitalk评论</h2>
+            <div class="post-date">2019-05-20</div>
             
             <div class="post-content">
-              <p>这里主要解释一下糟糕的沉浸状态栏实现，在多次查阅和实践后了解后，多处文章是这样写的：</p>
-<p><strong>1.在主布局DrawerLayout中android:fitsSystemWindows=&quot;true&quot;;
-2.然后设置状态栏透明;</strong></p>
-<p>（一是item中设置<code>&lt;item name=&quot;android:windowTranslucentStatus&quot;&gt;true&lt;/item&gt;</code></p>
-<p>二是在onCreate()中<code>getWindow().setStatusBarColor(Color.TRANSPARENT);</code>//状态栏透明</p>
-<p><code>getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);</code>//Activity全屏显示，但状态栏不会被隐藏覆盖，状态栏依然可见，Activity顶端布局部分会被状态遮住+保持整个View稳定, 常和控制System UI悬浮, 隐藏的Flags共用, 使View不会因为System UI的变化而重新layout</p>
-<p>）</p>
-<p>但是实践后，状态栏透明，侧滑部分状态栏仍然有黑条，解决办法是：</p>
-<p>主布局：<code>DrawerLayout中android:fitsSystemWindows=&quot;false&quot;;</code>//很奇怪~</p>
-<p>onCreate()中：</p>
-<p><code>getWindow().setStatusBarColor(Color.TRANSPARENT);</code></p>
-<p><code>getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);</code></p>
-<p>成功沉浸~</p>
+              <p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk</a>
+存在由于文章标题过长时导致无法初始化（github pages 机制），解决办法在<a href="https://github.com/gitalk/gitalk/issues/124">这</a>
+<img src="https://galiful.github.io/Resume//post-images/1558314852687.png" alt=""></p>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/ge-ren-sui-bi-zhuan-yi-dao-github-pages">
+                  <h3 class="post-title">
+                    个人随笔转移到Github pages
+                  </h3>
+                </a>
+              </div>
             
 
             
