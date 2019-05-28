@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://galiful.github.io/Resume/</id>
+    <title>Galiful</title>
+    <updated>2019-05-28T00:52:22.902Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://galiful.github.io/Resume/"/>
+    <link rel="self" href="https://galiful.github.io/Resume//atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://galiful.github.io/Resume//images/avatar.png</logo>
+    <icon>https://galiful.github.io/Resume//favicon.ico</icon>
+    <rights>All rights reserved 2019, Galiful</rights>
+    <entry>
+        <title type="html"><![CDATA[EasyPermissions的使用]]></title>
+        <id>https://galiful.github.io/Resume//post/easypermissions-de-shi-yong</id>
+        <link href="https://galiful.github.io/Resume//post/easypermissions-de-shi-yong">
+        </link>
+        <updated>2019-05-27T01:58:26.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://segmentfault.com/a/1190000012247350">https://segmentfault.com/a/1190000012247350</a></p>
+<p>GitHub地址：https://github.com/googlesamp...
+EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了操作的过程。
+使用过程： 没有什么先后顺序，下面没有按这个顺序。这么做是可以的，当然还有其他的使用方法</p>
+<blockquote>
+<p>1、builde gradle中依赖
+2、清单文件中声明权限
+3、重写onRequestPermissionsResult()方法，把执行操作给easyPermissions来
+4、通过hasPermissions检查权限，或者原生的也行，然后去申请权限
+5、实现EasyPermissions.PermissionCallbacks接口，重写两个方法，成功或失败
+6、在成功或者失败方法中编写要具体做的事。</p>
+</blockquote>
+<h3 id="github地址">GitHub地址：</h3>
+<p>(1)依赖库</p>
+<pre><code>dependencies {
+    compile 'pub.devrel:easypermissions:1.0.1'
+}
+</code></pre>
+<p>(2)再在清单文件中声明要申请的危险权限
+如果不声明的话，直接在代码中写也能申请成功，但是好想不会弹出询问框，直接就申请了</p>
+<p>(3)申请权限
+可以直接申请</p>
+<pre><code>EasyPermissions.requestPermissions(
+                    MainActivity.this,
+                    &quot;申请权限&quot;,
+                    0,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.RECORD_AUDIO);
+</code></pre>
+<p>最好还是检查一下权限是否申请：
+EasyPermissions.hasPermissions(Context context, @NonNull String… perms)方法来检测一个或者多个权限是否被允许，第二个参数是个可变数组，可以申请多个</p>
+<pre><code>String[] perms = {Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION};
+if (EasyPermissions.hasPermissions(this, perms)) {
+    
+    // 已经申请过权限，做想做的事
+} else {
+    // 没有申请过权限，现在去申请
+    EasyPermissions.requestPermissions(this, getString(R.string.camera_and_location_rationale),
+            RC_CAMERA_AND_LOCATION, perms);
+}
+</code></pre>
+<p>下面来说一个申请权限这个方法：
+EasyPermissions.requestPermissions():
+requestPermissions() 一般用这个四个参数的就可以
+第一个参数：Context对象
+第二个参数：权限弹窗上的文字提示语。告诉用户，这个权限用途。
+第三个参数：这次请求权限的唯一标识请求码，code。
+第四个参数 : 一些系列的权限。
+这里说一下第二个参数，不是第一次申请系统默认弹出的提示语，而是，我们拒绝后，再次点击申请弹出的对话框，，显示我们设置的提示语，下面有两个按钮，确认和取消，我就不贴图了。</p>
+<p>还有六个参数的，多了两个参数就是，修改我们上面那个确认和取消的字样，你可以干成yes 和no.</p>
+<h3 id="4-重写onrequestpermissionsresult方法把执行操作给easypermissions">4、重写onRequestPermissionsResult()方法，把执行操作给easyPermissions</h3>
+<p>一行代码就搞定了</p>
+<pre><code> @Override
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+}
+</code></pre>
+<p>5、实现EasyPermissions.PermissionCallbacks接口，重写两个方法</p>
+<pre><code>public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+}
+
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+    // 把执行结果的操作给EasyPermissions
+    EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+}
+
+@Override //申请成功时调用
+public void onPermissionsGranted(int requestCode, List&lt;String&gt; list) {
+    //请求成功执行相应的操作
+    
+    比如，举个例子
+    switch (requestCode){
+        case 0:
+            Toast.makeText(this, &quot;已获取WRITE_EXTERNAL_STORAGE权限&quot;, Toast.LENGTH_SHORT).show();
+            break;
+        case 1:
+            Toast.makeText(this, &quot;已获取WRITE_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE权限&quot;, Toast.LENGTH_SHORT).show();
+            break;
+    }
+}
+
+@Override //申请失败时调用
+public void onPermissionsDenied(int requestCode, List&lt;String&gt; list) {
+    // 请求失败，执行相应操作
+    
+}
+}
+</code></pre>
+<p>接下来就要说一下成功或者失败后的操作了： 申请成功就直接做该做的事就行了，没啥。
+申请如果失败了，这时候有个方法出现了EasyPermissions.somePermissionPermanentlyDenied(this, perms)
+这个方法是谷歌建议的。就是在我们点了不在询问并拒绝，会弹出对话框，告诉用户这个权限时干嘛的，很重要，建议不要拒绝哈哈
+比如这样：</p>
+<pre><code>@Override
+public void onPermissionsDenied(int requestCode, List&lt;String&gt; perms) {
+
+if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+    new AppSettingsDialog.Builder(this).build().show();
+    //弹出个对话框
+}
+</code></pre>
+<p>当然我们可以定制一下这个对话框：</p>
+<pre><code>@Override
+public void onPermissionsDenied(int requestCode, List&lt;String&gt; perms) {
+    //处理权限名字字符串
+    StringBuffer sb = new StringBuffer();
+    for (String str : perms){
+        sb.append(str);
+        sb.append(&quot;\n&quot;);
+    }
+    sb.replace(sb.length() - 2,sb.length(),&quot;&quot;);
+
+    switch (requestCode){
+        case 0:
+            Toast.makeText(this, &quot;已拒绝权限&quot; + perms.get(0), Toast.LENGTH_SHORT).show();
+            break;
+        case 1:
+            Toast.makeText(this, &quot;已拒绝WRITE_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE权限&quot;+ perms.get(0), Toast.LENGTH_SHORT).show();
+            break;
+    }
+    if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+        Toast.makeText(this, &quot;已拒绝权限&quot; + sb + &quot;并不再询问&quot; , Toast.LENGTH_SHORT).show();
+        new AppSettingsDialog
+                .Builder(this)
+                .setRationale(&quot;此功能需要&quot; + sb + &quot;权限，否则无法正常使用，是否打开设置&quot;)
+                .setPositiveButton(&quot;是&quot;)
+                .setNegativeButton(&quot;否&quot;)
+                .build()
+                .show();
+    }
+}
+</code></pre>
+<h3 id="6-可选afterpermissiongranted注解">6、(可选)@AfterPermissionGranted()注解</h3>
+<p>使用 AfterPermissioonGranted 注解。这是可选的，但是提供出来是为了方便。如果所有的请求的权限都被授予了，被注解的方法将会被执行，这样做是为了简化通常的请求权限成功之后再调用方法的流程。同时也可以在onPermissionsGranted 的回调中添加逻辑操作：
+比如官网上的这个实例代码：
+这里的方法名可以自己取，主要是权限都申请完，就调用这个方法，执行里面的操作。
+其实就相当于在onPermissionsGranted()调用这个方法而已:</p>
+<pre><code>@AfterPermissionGranted(RC_CAMERA_AND_LOCATION)
+private void methodRequiresTwoPermission() {
+String[] perms = {Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION};
+if (EasyPermissions.hasPermissions(this, perms)) {
+    // Already have permission, do the thing
+    // ...
+} else {
+    // Do not have permissions, request them now
+    EasyPermissions.requestPermissions(this, getString(R.string.camera_and_location_rationale),
+            RC_CAMERA_AND_LOCATION, perms);
+}
+}
+</code></pre>
+<h3 id="4-android-80运行时权限">4、android 8.0运行时权限</h3>
+<p>对于针对Android O的应用，此行为已被纠正。系统只会授予应用明确请求的权限。然而一旦用户为应用授予某个权限，则所有后续对该权限组中权限的请求都将被自动批准。</p>
+<p>例如，假设某个应用在其清单中列出READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE。应用请求READ_EXTERNAL_STORAGE，并且用户授予了该权限，如果该应用针对的是API级别24或更低级别，系统还会同时授予WRITE_EXTERNAL_STORAGE，因为该权限也属于STORAGE权限组并且也在清单中注册过。如果该应用针对的是Android O，则系统此时仅会授予READ_EXTERNAL_STORAGE，不过在该应用以后申请WRITE_EXTERNAL_STORAGE权限时，系统会立即授予该权限，而不会提示用户。
+注意：如果使用了没有授权的权限，会崩溃的</p>
+<p>所以对于8.0权限，我们要做的处理，是尽量把所用到的危险权限全部申请。但是有的权限在不同版本出现，所以要兼容不同的版本，所以要加一个版本的判断。</p>
+<pre><code>归根结底：android M (6.0)以后，申请权限组一个，即表示整个权限组可以用，所以我们干脆，只要api 版本大于23（6.0）,我们申请的权限就是申请整个权限组。这样就兼容了android8.0-------------------为了省事的话可以用AndPermission这个第三方框架，或者自己封装一个。
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[集成gitalk评论]]></title>
+        <id>https://galiful.github.io/Resume//post/ji-cheng-gitalk-ping-lun</id>
+        <link href="https://galiful.github.io/Resume//post/ji-cheng-gitalk-ping-lun">
+        </link>
+        <updated>2019-05-20T01:07:25.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk</a>
+存在由于文章标题过长时导致无法初始化（github pages 机制），解决办法在<a href="https://github.com/gitalk/gitalk/issues/124">这</a>
+<img src="https://galiful.github.io/Resume//post-images/1558314852687.png" alt=""></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[个人随笔转移到Github pages]]></title>
+        <id>https://galiful.github.io/Resume//post/ge-ren-sui-bi-zhuan-yi-dao-github-pages</id>
+        <link href="https://galiful.github.io/Resume//post/ge-ren-sui-bi-zhuan-yi-dao-github-pages">
+        </link>
+        <updated>2019-05-10T08:01:45.000Z</updated>
+        <content type="html"><![CDATA[<p>今天2019年5月10日
+将之前在<a href="https://www.jianshu.com/u/5b0d57ea33fe">简书</a>的个人转载也好，自己学习记录也好，转移到Github 开放仓库<a href="https://github.com/Galiful/Resume">Resume</a>中</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Android Documentation 随笔]]></title>
+        <id>https://galiful.github.io/Resume//post/android-documentation-sui-bi</id>
+        <link href="https://galiful.github.io/Resume//post/android-documentation-sui-bi">
+        </link>
+        <updated>2019-04-18T07:37:29.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>Dialog</strong> 类是对话框的基类，但您应该避免直接实例化 Dialog，而是使用下列子类之一：</p>
+<p><strong>AlertDialog</strong></p>
+<p>此对话框可显示标题、最多三个按钮、可选择项列表或自定义布局。</p>
+<p>DatePickerDialog 或 TimePickerDialog</p>
+<p>此对话框带有允许用户选择日期或时间的预定义 UI。</p>
+<p><strong>避免使用 ProgressDialog</strong></p>
+<p>Android 包括另一种名为 ProgressDialog 的对话框类，可显示具有进度条的对话框。不过，如需指示加载进度或不确定的进度，则应改为遵循进度和 Activity 的设计指南，并在您的布局中使用 ProgressBar。</p>
+<p>提示：默认情况下，当您将 EditText 元素设置为使用 &quot;textPassword&quot; 输入类型时，字体系列将设置为固定宽度。因此，您应该将其字体系列更改为 &quot;sans-serif&quot;，以便两个文本字段都使用匹配的字体样式。</p>
+<p>提示：如·果您想要自定义对话框，可以改用对话框的形式显示 Activity，而不是使用 Dialog API。 只需创建一个 Activity，并在 <activity> 清单文件元素中将其主题设置为 Theme.Holo.Dialog：</p>
+<p><code>&lt;activity android:theme=&quot;@android:style/Theme.Holo.Dialog&quot; &gt;</code></p>
+<p>就这么简单。Activity 现在会显示在一个对话框窗口中，而非全屏显示。</p>
+<p>要想仅在大屏幕上将 Activity 显示为对话框，请将 Theme.Holo.DialogWhenLarge 主题应用于 <activity> 清单文件元素：</p>
+<p><code>&lt;activity android:theme=&quot;@android:style/Theme.Holo.DialogWhenLarge&quot; &gt;</code></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Android 中简单实现8种Dialog]]></title>
+        <id>https://galiful.github.io/Resume//post/android-zhong-jian-dan-shi-xian-8-chong-dialog</id>
+        <link href="https://galiful.github.io/Resume//post/android-zhong-jian-dan-shi-xian-8-chong-dialog">
+        </link>
+        <updated>2019-04-18T07:36:49.000Z</updated>
+        <content type="html"><![CDATA[<p>出处：<a href="https://www.cnblogs.com/gzdaijie/p/5222191.html">https://www.cnblogs.com/gzdaijie/p/5222191.html</a></p>
+<h2 id="1写在前面">1.写在前面</h2>
+<ul>
+<li>Android提供了丰富的<code>Dialog</code>函数，本文介绍最常用的8种对话框的使用方法，包括普通（包含提示消息和按钮）、列表、单选、多选、等待、进度条、编辑、自定义等多种形式，将在第2部分介绍。</li>
+<li>有时，我们希望在对话框创建或关闭时完成一些特定的功能，这需要<code>复写</code>Dialog的<code>create()</code>、<code>show()</code>、<code>dismiss()</code>等方法，将在第3部分介绍。</li>
+</ul>
+<h2 id="2代码示例">2.代码示例</h2>
+<p><img src="http://upload-images.jianshu.io/upload_images/15775879-734b1a8a288c181f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片示例"></p>
+<h3 id="21-普通dialog图1与图2">2.1 普通Dialog（图1与图2）</h3>
+<ul>
+<li><strong>2个按钮</strong></li>
+</ul>
+<pre><code>public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button buttonNormal = (Button) findViewById(R.id.button_normal);
+        buttonNormal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNormalDialog();
+            }
+        });
+    }
+
+    private void showNormalDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog = 
+            new AlertDialog.Builder(MainActivity.this);
+        normalDialog.setIcon(R.drawable.icon_dialog);
+        normalDialog.setTitle(&quot;我是一个普通Dialog&quot;)
+        normalDialog.setMessage(&quot;你要点击哪一个按钮呢?&quot;);
+        normalDialog.setPositiveButton(&quot;确定&quot;, 
+            new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //...To-do
+            }
+        });
+        normalDialog.setNegativeButton(&quot;关闭&quot;, 
+            new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //...To-do
+            }
+        });
+        // 显示
+        normalDialog.show();
+    }
+}
+</code></pre>
+<ul>
+<li><strong>3个按钮</strong></li>
+</ul>
+<pre><code>/* @setNeutralButton 设置中间的按钮
+ * 若只需一个按钮，仅设置 setPositiveButton 即可
+ */
+private void showMultiBtnDialog(){
+    AlertDialog.Builder normalDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    normalDialog.setIcon(R.drawable.icon_dialog);
+    normalDialog.setTitle(&quot;我是一个普通Dialog&quot;).setMessage(&quot;你要点击哪一个按钮呢?&quot;);
+    normalDialog.setPositiveButton(&quot;按钮1&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // ...To-do
+        }
+    });
+    normalDialog.setNeutralButton(&quot;按钮2&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // ...To-do
+        }
+    });
+    normalDialog.setNegativeButton(&quot;按钮3&quot;, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // ...To-do
+        }
+    });
+    // 创建实例并显示
+    normalDialog.show();
+}
+
+</code></pre>
+<h3 id="22-列表dialog图3">2.2 列表Dialog（图3）</h3>
+<pre><code>private void showListDialog() {
+    final String[] items = { &quot;我是1&quot;,&quot;我是2&quot;,&quot;我是3&quot;,&quot;我是4&quot; };
+    AlertDialog.Builder listDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    listDialog.setTitle(&quot;我是一个列表Dialog&quot;);
+    listDialog.setItems(items, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // which 下标从0开始
+            // ...To-do
+            Toast.makeText(MainActivity.this, 
+                &quot;你点击了&quot; + items[which], 
+                Toast.LENGTH_SHORT).show();
+        }
+    });
+    listDialog.show();
+}
+</code></pre>
+<h3 id="23-单选dialog图4">2.3 单选Dialog（图4）</h3>
+<pre><code>int yourChoice;
+private void showSingleChoiceDialog(){
+    final String[] items = { &quot;我是1&quot;,&quot;我是2&quot;,&quot;我是3&quot;,&quot;我是4&quot; };
+    yourChoice = -1;
+    AlertDialog.Builder singleChoiceDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    singleChoiceDialog.setTitle(&quot;我是一个单选Dialog&quot;);
+    // 第二个参数是默认选项，此处设置为0
+    singleChoiceDialog.setSingleChoiceItems(items, 0, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            yourChoice = which;
+        }
+    });
+    singleChoiceDialog.setPositiveButton(&quot;确定&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (yourChoice != -1) {
+                Toast.makeText(MainActivity.this, 
+                &quot;你选择了&quot; + items[yourChoice], 
+                Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
+    singleChoiceDialog.show();
+}
+</code></pre>
+<h3 id="24-多选dialog图5">2.4 多选Dialog（图5）</h3>
+<pre><code>ArrayList&lt;Integer&gt; yourChoices = new ArrayList&lt;&gt;();
+private void showMultiChoiceDialog() {
+    final String[] items = { &quot;我是1&quot;,&quot;我是2&quot;,&quot;我是3&quot;,&quot;我是4&quot; };
+    // 设置默认选中的选项，全为false默认均未选中
+    final boolean initChoiceSets[]={false,false,false,false};
+    yourChoices.clear();
+    AlertDialog.Builder multiChoiceDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    multiChoiceDialog.setTitle(&quot;我是一个多选Dialog&quot;);
+    multiChoiceDialog.setMultiChoiceItems(items, initChoiceSets,
+        new DialogInterface.OnMultiChoiceClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which,
+            boolean isChecked) {
+            if (isChecked) {
+                yourChoices.add(which);
+            } else {
+                yourChoices.remove(which);
+            }
+        }
+    });
+    multiChoiceDialog.setPositiveButton(&quot;确定&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            int size = yourChoices.size();
+            String str = &quot;&quot;;
+            for (int i = 0; i &lt; size; i++) {
+                str += items[yourChoices.get(i)] + &quot; &quot;;
+            }
+            Toast.makeText(MainActivity.this, 
+                &quot;你选中了&quot; + str, 
+                Toast.LENGTH_SHORT).show();
+        }
+    });
+    multiChoiceDialog.show();
+}
+</code></pre>
+<h3 id="25-等待dialog图6">2.5 等待Dialog（图6）</h3>
+<pre><code>private void showWaitingDialog() {
+    /* 等待Dialog具有屏蔽其他控件的交互能力
+     * @setCancelable 为使屏幕不可点击，设置为不可取消(false)
+     * 下载等事件完成后，主动调用函数关闭该Dialog
+     */
+    ProgressDialog waitingDialog= 
+        new ProgressDialog(MainActivity.this);
+    waitingDialog.setTitle(&quot;我是一个等待Dialog&quot;);
+    waitingDialog.setMessage(&quot;等待中...&quot;);
+    waitingDialog.setIndeterminate(true);
+    waitingDialog.setCancelable(false);
+    waitingDialog.show();
+}
+</code></pre>
+<h3 id="26-进度条dialog图7">2.6 进度条Dialog（图7）</h3>
+<pre><code>private void showProgressDialog() {
+    /* @setProgress 设置初始进度
+     * @setProgressStyle 设置样式（水平进度条）
+     * @setMax 设置进度最大值
+     */
+    final int MAX_PROGRESS = 100;
+    final ProgressDialog progressDialog = 
+        new ProgressDialog(MainActivity.this);
+    progressDialog.setProgress(0);
+    progressDialog.setTitle(&quot;我是一个进度条Dialog&quot;);
+    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+    progressDialog.setMax(MAX_PROGRESS);
+    progressDialog.show();
+    /* 模拟进度增加的过程
+     * 新开一个线程，每个100ms，进度增加1
+     */
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            int progress= 0;
+            while (progress &lt; MAX_PROGRESS){
+                try {
+                    Thread.sleep(100);
+                    progress++;
+                    progressDialog.setProgress(progress);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            // 进度达到最大值后，窗口消失
+            progressDialog.cancel();
+        }
+    }).start();
+}
+</code></pre>
+<h3 id="27-编辑dialog图8">2.7 编辑Dialog（图8）</h3>
+<pre><code>private void showInputDialog() {
+    /*@setView 装入一个EditView
+     */
+    final EditText editText = new EditText(MainActivity.this);
+    AlertDialog.Builder inputDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    inputDialog.setTitle(&quot;我是一个输入Dialog&quot;).setView(editText);
+    inputDialog.setPositiveButton(&quot;确定&quot;, 
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            Toast.makeText(MainActivity.this,
+            editText.getText().toString(), 
+            Toast.LENGTH_SHORT).show();
+        }
+    }).show();
+}
+</code></pre>
+<h3 id="28-自定义dialog图9">2.8 自定义Dialog（图9）</h3>
+<pre><code>&lt;!-- res/layout/dialog_customize.xml--&gt;
+&lt;!-- 自定义View --&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation=&quot;vertical&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+    &lt;EditText
+        android:id=&quot;@+id/edit_text&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot; 
+        /&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+<pre><code>private void showCustomizeDialog() {
+    /* @setView 装入自定义View ==&gt; R.layout.dialog_customize
+     * 由于dialog_customize.xml只放置了一个EditView，因此和图8一样
+     * dialog_customize.xml可自定义更复杂的View
+     */
+    AlertDialog.Builder customizeDialog = 
+        new AlertDialog.Builder(MainActivity.this);
+    final View dialogView = LayoutInflater.from(MainActivity.this)
+        .inflate(R.layout.dialog_customize,null);
+    customizeDialog.setTitle(&quot;我是一个自定义Dialog&quot;);
+    customizeDialog.setView(dialogView);
+    customizeDialog.setPositiveButton(&quot;确定&quot;,
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // 获取EditView中的输入内容
+            EditText edit_text = 
+                (EditText) dialogView.findViewById(R.id.edit_text);
+            Toast.makeText(MainActivity.this,
+                edit_text.getText().toString(),
+                Toast.LENGTH_SHORT).show();
+        }
+    });
+    customizeDialog.show();
+}
+</code></pre>
+<h2 id="3复写回调函数">3.复写回调函数</h2>
+<pre><code>/* 复写Builder的create和show函数，可以在Dialog显示前实现必要设置
+ * 例如初始化列表、默认选项等
+ * @create 第一次创建时调用
+ * @show 每次显示时调用
+ */
+private void showListDialog() {
+    final String[] items = { &quot;我是1&quot;,&quot;我是2&quot;,&quot;我是3&quot;,&quot;我是4&quot; };
+    AlertDialog.Builder listDialog = 
+        new AlertDialog.Builder(MainActivity.this){
+
+        @Override
+        public AlertDialog create() {
+            items[0] = &quot;我是No.1&quot;;
+            return super.create();
+        }
+
+        @Override
+        public AlertDialog show() {
+            items[1] = &quot;我是No.2&quot;;
+            return super.show();
+        }
+    };
+    listDialog.setTitle(&quot;我是一个列表Dialog&quot;);
+    listDialog.setItems(items, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // ...To-do
+        }
+    });
+    /* @setOnDismissListener Dialog销毁时调用
+     * @setOnCancelListener Dialog关闭时调用
+     */
+    listDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        public void onDismiss(DialogInterface dialog) {
+            Toast.makeText(getApplicationContext(),
+                &quot;Dialog被销毁了&quot;, 
+                Toast.LENGTH_SHORT).show();
+        }
+    });
+    listDialog.show();
+}
+</code></pre>
+<h2 id="另外可继承dialog类实现更多除布局以外更多的动作">另外可继承Dialog类实现更多除布局以外更多的动作</h2>
+<pre><code>setContentView(R.layout.common_dialog_layout);
+        //按空白处不能取消动画
+        setCanceledOnTouchOutside(false);
+        //初始化界面控件
+        initView();
+        //初始化界面数据
+        refreshView();
+        //初始化界面控件的事件
+        initEvent();
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[github上的license-许可证]]></title>
+        <id>https://galiful.github.io/Resume//post/github-shang-de-license-xu-ke-zheng</id>
+        <link href="https://galiful.github.io/Resume//post/github-shang-de-license-xu-ke-zheng">
+        </link>
+        <updated>2019-03-29T07:36:10.000Z</updated>
+        <content type="html"><![CDATA[<p>转载</p>
+<p>介绍3个主流的许可证 :</p>
+<p>MIT 许可证 -- 只要用户在项目副本中包含了版权声明和许可声明，他们就可以拿你的代码做任何想做的事情，你也无需承担任何责任。</p>
+<p>Apache 许可证 -- 类似 MIT 许可证，但它同时还包含了贡献者向用户提供专利授权相关的条款。</p>
+<p>GPL 许可证 -- 这是一种copyleft许可证，要求修改项目代码的用户再次分发源码或二进制代码时，必须公布他的相关修改。V3版本与V2类似，但其进一步约束了在某些限制软件更改的硬件上的使用范围。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[android之onClick和onTouch防止点击过快的处理方法]]></title>
+        <id>https://galiful.github.io/Resume//post/android-zhi-onclick-he-ontouch-fang-zhi-dian-ji-guo-kuai-de-chu-li-fang-fa</id>
+        <link href="https://galiful.github.io/Resume//post/android-zhi-onclick-he-ontouch-fang-zhi-dian-ji-guo-kuai-de-chu-li-fang-fa">
+        </link>
+        <updated>2019-03-16T07:34:27.000Z</updated>
+        <content type="html"><![CDATA[<p>注：
+<code>Calendar.getInstance().getTimeInMillis(); //每次调用onClick时的时间，可返回long</code></p>
+<p><strong>onclick</strong></p>
+<pre><code>public static final int MIN_CLICK_DELAY_TIME = 1000;
+
+   private long lastClickTime = 0;
+
+          @Override
+
+          public void onClick(View v) {
+
+              long currentTime = Calendar.getInstance().getTimeInMillis();
+
+              if (currentTime - lastClickTime &gt; MIN_CLICK_DELAY_TIME) {
+
+                  lastClickTime = currentTime;
+
+                 /**
+                  *执行代码
+                  /
+
+              }
+
+          } 
+</code></pre>
+<p><strong>onTouch</strong>
+（自写，由于onTouch抬起按下都会有监听事件，下面代码逻辑为：一次完整按下抬起过程没有时间限制，第二次按下须与上次抬起有MIN_CLICK_DELAY_TIME 间隔  ）</p>
+<pre><code>public static final int MIN_CLICK_DELAY_TIME = 1000;
+long upTime =0;
+long downTime =0;
+
+@Override
+
+public boolean onTouch(View v, MotionEvent event) {
+
+    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+            downTime = Calendar.getInstance().getTimeInMillis();
+
+      }
+
+    if (downTime -upTime &gt;MIN_CLICK_DELAY_TIME) {
+                /**
+                *执行代码
+                 /
+    }
+
+    if(event.getAction() == MotionEvent.ACTION_UP){
+
+            upTime=Calendar.getInstance().getTimeInMillis();
+
+        }
+return false;
+}
+</code></pre>
+<p>如果程序需要在多个地方使用，可以自定义一个NoDoubleClickListener（NoDoubleTouchListener）,继承自OnClickListener（OnTouchListener）：</p>
+<p>/代码2</p>
+<pre><code>public abstract class NoDoubleClickListener implements OnClickListener {
+
+		public static final int MIN_CLICK_DELAY_TIME = 1000;
+
+		private long lastClickTime = 0;
+
+		@Override
+
+		public void onClick(View v) {
+
+				long currentTime = Calendar.getInstance().getTimeInMillis();
+
+				if (currentTime - lastClickTime &gt; MIN_CLICK_DELAY_TIME) {
+
+						lastClickTime = currentTime;
+
+						onNoDoubleClick(v);
+
+				}
+
+		} 
+
+}
+
+noDooubleButton.setOnClickListener(new NoDoubleClickListener() {
+
+		@Override
+
+		public void onNoDoubleClick(View v) {
+
+				submitOrder();//执行代码
+
+		}
+
+});
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[动态权限申请小结]]></title>
+        <id>https://galiful.github.io/Resume//post/dong-tai-quan-xian-shen-qing-xiao-jie</id>
+        <link href="https://galiful.github.io/Resume//post/dong-tai-quan-xian-shen-qing-xiao-jie">
+        </link>
+        <updated>2019-03-16T07:33:48.000Z</updated>
+        <content type="html"><![CDATA[<p>单个权限申请</p>
+<pre><code>if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.READ_CONTACTS }, 1);
+        } else {
+            readContacts();
+        }
+}
+</code></pre>
+<p>重写</p>
+<pre><code>@Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    readContacts();
+                } else {
+                    Toast.makeText(this, &quot;You denied the permission&quot;, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+        }
+    }
+</code></pre>
+<p>多个权限：</p>
+<p>//定义权限数组</p>
+<pre><code>public  final String[] authBaseArr = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+</code></pre>
+<p>//检查权限</p>
+<pre><code>public boolean hasBasePhoneAuth() {
+        PackageManager pm =this.getPackageManager();
+        for (String auth : authBaseArr) {
+            if (pm.checkPermission(auth, this.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+</code></pre>
+<p>//申请</p>
+<pre><code>if (android.os.Build.VERSION.SDK_INT &gt;= 23) {
+            if (!hasBasePhoneAuth()) {
+                this.requestPermissions(authBaseArr, authBaseRequestCode);
+                return;
+            }
+        }
+</code></pre>
+<p>//重写onRequestPermissionsResult</p>
+<pre><code>@Override
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            for (int ret : grantResults) {
+                if (ret == 0) {
+                    continue;
+                } else {
+                    Toast.makeText(this, &quot;You denied the permission!&quot;, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+						//执行代码
+        }
+    }
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Android状态栏与背景图完美沉浸]]></title>
+        <id>https://galiful.github.io/Resume//post/android-zhuang-tai-lan-yu-bei-jing-tu-wan-mei-chen-jin</id>
+        <link href="https://galiful.github.io/Resume//post/android-zhuang-tai-lan-yu-bei-jing-tu-wan-mei-chen-jin">
+        </link>
+        <updated>2019-02-21T07:19:00.000Z</updated>
+        <content type="html"><![CDATA[<p>这个特性是安卓5.0以后才支持的所以需要对系统版本号做判断</p>
+<p>1、代码实现，在activity super.onCreate之后  setContentView之前</p>
+<pre><code>if (Build.VERSION.SDK_INT &gt;= 21){
+              View decorView = getWindow().getDecorView();
+                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+              getWindow().setStatusBarColor(Color.TRANSPARENT)
+    }
+</code></pre>
+<p>getWindow().getDecorView()拿到当前活动DecorView，再setSystemUiVisibility()改变系统UI的显示，<code>View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN和View.SYSTEM_UI_FLAG_LAYOUT_STABLE</code>就表示活动的布局会显示在状态栏上面，再将状态栏设置为透明色setStatusBarColor()</p>
+<p>2、activity根布局中还需要加</p>
+<p><code>android:fitsSystemWindows=&quot;true&quot;</code></p>
+<p>动手试试吧</p>
+<p><a href=""></a>https://blog.csdn.net/knockheart/article/details/80095887</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[module中implementation的包没法引用]]></title>
+        <id>https://galiful.github.io/Resume//post/module-zhong-implementation-de-bao-mei-fa-yin-yong</id>
+        <link href="https://galiful.github.io/Resume//post/module-zhong-implementation-de-bao-mei-fa-yin-yong">
+        </link>
+        <updated>2019-02-13T07:15:22.000Z</updated>
+        <content type="html"><![CDATA[<p>Android studio升级到3.0以上之后，插件版本（plugin version）也随之升级到了3.0.0版本或以上。</p>
+<p>工程中import的module中的dependencies 原来用的是compile，但在26还是28后强制使用implementation，所以你为了顺应潮流（安全）改成了implementation。但：</p>
+<p><strong>implementation指令</strong></p>
+<p>这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开</p>
+<p>所以你module中的类可以用，但jar怎么都引用不了，你开始慌了...</p>
+<p>正文：
+在3.0版本中，compile 指令被标注为过时方法，而新增了两个依赖指令，一个是implement 和api，这两个都可以进行依赖添加，但是有什么区别呢？</p>
+<p>新建工程默认生成的app的build.gradle文件中的依赖：</p>
+<pre><code>dependencies {
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+   implementation 'com.android.support:appcompat-v7:26.1.0'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+}
+</code></pre>
+<p><strong>[api 指令]</strong></p>
+<pre><code>    完全等同于compile指令，没区别，你将所有的compile改成api，完全没有错。
+</code></pre>
+<p><strong>[implementation指令]</strong></p>
+<pre><code>    这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开。
+</code></pre>
+<p>简单的说，就是使用implementation指令的依赖不会传递。</p>
+<p>例如，有一个module为testsdk，testsdk依赖于gson：</p>
+<p><code>implementation 'com.google.code.gson:gson:2.8.2'</code></p>
+<p>这时候，在testsdk里边的java代码是可以访问gson的。</p>
+<p>另一个module为app，app依赖于testsdk：</p>
+<p><code>implementation project(':testsdk')</code></p>
+<p>这时候，因为testsdk使用的是implementation 指令来依赖gson，所以app里边不能引用gson。
+但是，如果testsdk使用的是api来引用gson：</p>
+<p><code>api 'com.google.code.gson:gson:2.8.2'</code></p>
+<p>则与gradle3.0.0之前的compile指令的效果完全一样，app的module也可以引用gson。这就是api和implementation的区别。</p>
+<p>建议
+在Google IO 相关话题的中提到了一个建议，就是依赖首先应该设置为implementation的，如果没有错，那就用implementation，如果有错，那么使用api指令。使用implementation会使编译速度有所增快。</p>
+<p>原文：https://blog.csdn.net/mybook1122/article/details/78657392</p>
+]]></content>
+    </entry>
+</feed>

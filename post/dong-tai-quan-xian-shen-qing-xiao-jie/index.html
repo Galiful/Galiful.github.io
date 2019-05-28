@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1558923215900">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1559004727665">
 <link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://galiful.github.io/Resume/">
-        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1558923215900" class="site-logo">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1559004727665" class="site-logo">
         <h1 class="site-title">Galiful</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -101,37 +101,56 @@
             <div class="post-date">2019-03-16</div>
             
             <div class="post-content">
-              <p>单个权限推荐</p>
-<pre><code>if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
-
-!= PackageManager.PERMISSION_GRANTED) {
-
-ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 100);
-
-return;
-
+              <p>单个权限申请</p>
+<pre><code>if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.READ_CONTACTS }, 1);
+        } else {
+            readContacts();
+        }
 }
+</code></pre>
+<p>重写</p>
+<pre><code>@Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    readContacts();
+                } else {
+                    Toast.makeText(this, &quot;You denied the permission&quot;, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+        }
+    }
 </code></pre>
 <p>多个权限：</p>
 <p>//定义权限数组</p>
-<pre><code>public final String[]authBaseArr = {
-
-Manifest.permission.WRITE_EXTERNAL_STORAGE,
-
-        Manifest.permission.ACCESS_FINE_LOCATION
-
-};
+<pre><code>public  final String[] authBaseArr = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+</code></pre>
+<p>//检查权限</p>
+<pre><code>public boolean hasBasePhoneAuth() {
+        PackageManager pm =this.getPackageManager();
+        for (String auth : authBaseArr) {
+            if (pm.checkPermission(auth, this.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
 </code></pre>
 <p>//申请</p>
-<pre><code>if (android.os.Build.VERSION.SDK_INT &gt;=23) {
-
-this.requestPermissions(authBaseArr, 100);
-
-return;
-
-}
+<pre><code>if (android.os.Build.VERSION.SDK_INT &gt;= 23) {
+            if (!hasBasePhoneAuth()) {
+                this.requestPermissions(authBaseArr, authBaseRequestCode);
+                return;
+            }
+        }
 </code></pre>
-<p>//重写</p>
+<p>//重写onRequestPermissionsResult</p>
 <pre><code>@Override
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -141,10 +160,11 @@ return;
                 if (ret == 0) {
                     continue;
                 } else {
-                    Toast.makeText(MainActivity.this, &quot;缺少导航基本的权限!&quot;, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, &quot;You denied the permission!&quot;, Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
+						//执行代码
         }
     }
 </code></pre>
