@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>两种Activity的生命周期及Camera资源的释放 | Galiful</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1560135849962">
+<link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://galiful.github.io/Resume/">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1560135849962" class="site-logo">
+        <h1 class="site-title">Galiful</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://galiful.github.io/Resume/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://galiful.github.io/Resume//post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/Galiful" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+          <a class="social-link" href="http://www.facebook.com/" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by Gridea
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">两种Activity的生命周期及Camera资源的释放</h2>
+            <div class="post-date">2019-06-10</div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>在一次项目中尝试使用DialogActivity（对话框式活动）时又恰巧调用了摄像头，有oneActivity（普通活动）和twoActivity（对话框式活动），两个活动均使用了摄像头，oneActivity跳转到twoActivity时，即使做了资源释放，跳转时twoActivity摄像头正常，但back回oneActivity时，oneActivity摄像头异常（画面不动），按home后（执行onResume）后正常，可刚刚按back时执行了onResume了的。可当twoActivity为普通活动时，又一切正常~~~</p>
+</blockquote>
+<h3 id="再次认识活动的生命周期">再次认识活动的生命周期</h3>
+<p>一 返回栈<br>
+1.定义： Android是使用任务（Task）来管理活动的，一个任务就是一组存放在栈里的活动 的集合这个栈也被称作返回栈（Back Stack）。
+2.栈顶：存放刚启动的一个新的活动。（当我们 按下 Back键或调用 finish()方法去销毁一个活动时，处于栈顶的活动会出栈，这时前一个入 栈的活动就会重新处于栈顶的位置。系统总是会显示处于栈顶的活动给用户。）</p>
+<p>二 活动状态<br>
+1.运行状态：活动位于返回栈的栈顶时（系统最不愿意回收的 就是处于运行状态的活动，因为这会带来非常差的用户体验。）</p>
+<p>2.暂停状态：当一个活动不再处于栈顶位置，但仍然可见时（比如某个活动上面新开了个对话框活动该活动就是暂停活动-系统也不愿意去回收这 种活动。）</p>
+<p>3.停止状态：当一个活动不再处于栈顶位置，并且完全不可见的时候，就进入了停止状态。（系统 仍然会为这种活动保存相应的状态和成员变量，但很容易被回收）</p>
+<p>4.销毁状态：当一个活动从返回栈中移除后就变成了销毁状态（系统会最倾向于回收处于这种状 态的活动，从而保证手机的内存充足。）</p>
+<p>三 创建活动的生存期<br>
+1.onCreate()：它会在活动 第一次被创建的时候调用用于加载布局、绑定事件等。</p>
+<p>2.onStart()：这个方法在活动由不可见变为可见的时候调用。</p>
+<p>3.onResume()：这个方法在活动准备好和用户进行交互的时候调用。此时的活动一定位于返回栈的 栈顶，并且处于运行状态。</p>
+<p>4.onPause()： 这个方法在系统准备去启动或者恢复另一个活动的时候调用。</p>
+<p>5.onStop()：  这个方法在活动完全不可见的时候调用。-----（如 果启动的新活动是一个对话框式的活动，那么 onPause()方法会得到执行，而 onStop() 方法并不会执行。）。</p>
+<p>6.onDestroy()：这个方法在活动被销毁之前调用，之后活动的状态将变为销毁状态。</p>
+<p>7.onRestart()：活动被重新启动时调用。</p>
+<p><strong>完整生存期</strong>：【 onCreate()~ onDestroy()】之间。<br>
+<strong>可见生存期</strong>：【 onStart()~ onStop()】之间。活动对于用户总是可见的！（我们可以通过这两个方法对资源进行加载和释放）<br>
+<strong>前台生存期</strong>：【 onResume()~ onPause()】之间。活动总是处于运行状态的！（可以和用户进行相互。）</p>
+<h3 id="演绎">演绎</h3>
+<p>重温以上知识点后重新演绎上述场景，<br>
+<strong>twoActivity为正常活动时</strong>：<br>
+MainActivity   执行：
+onCreate()<br>
+onStart()<br>
+onResume() 方法<br>
+然后点击第一个按钮启动 NormalActivity：（由于 NormalActivity已经把 MainActivity完全遮挡住，）<br>
+执行：
+onPause()<br>
+onStop()<br>
+然后按下 Back键返回 MainActivity（由于之前 MainActivity已经进入了停止状态）<br>
+执行：<br>
+onRestart()<br>
+onStart()<br>
+onResume()</p>
+<p><strong>twoActivity为对话框活动时</strong>：<br>
+然后再点击第二个按钮，启动 DialogActivity（DialogActivity并没有完全遮挡住 MainActivity）<br>
+执行：<br>
+onPause()<br>
+Back键返回 MainActivity<br>
+执行：<br>
+onResume()<br>
+最后在 MainActivity按下 Back键退出程序<br>
+执行：<br>
+onPause()<br>
+onStop()<br>
+onDestroy()</p>
+<p><strong>结论</strong>：<strong>dialogActivity不会执行onStop、onRestart()、 onStart()</strong>，导致相机资源没有正常回调（也许可以通过修改相机类修复）<br>
+下面是项目中（asrDemo→DetectLoginActivity）生命周期log：
+<img src="https://galiful.github.io/Resume//post-images/1560134889431.png" alt="">
+可见在这台设备上，在执行AsrDemo onPause后就执行了DetectLoginActivity onCreate，如果没有合理释放资源必然出现占用错误（camera can not connect 等...）<br>
+当DetectLoginActivity为对话框式活动时生命周期log：
+<img src="https://galiful.github.io/Resume//post-images/1560134787747.png" alt="">
+<strong>这次跳转过程asrDemo中camera并没有回调发生</strong><br>
+在asrDemo、DetectLoginActivity中camera释放放在onPause()，以在asrDemo跳转和DetectLoginActivity back时释放。</p>
+<h3 id="小结">小结</h3>
+<p>关于如何解决在有camera活动打开另一个camera活动，且第二个又是DialogActivity，中的camera正常调用问题?
+本次项目做法是将第二个活动改为普通活动（黑线~）
+有大佬说可以把dialogActivity改为<strong>DialogFragment</strong>，生命周期就正常了，自己做了尝试，跟继承Dialog类似，由于项目设计代码较多且是引用的，半途中止，先实现功能再说，后面自己写时尝试再使用DialogFragment看看效果</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/guan-yu-application-de-ji-cheng">
+                  <h3 class="post-title">
+                    关于application的继承
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '3c41d58bb18a46d0ef13',
+        clientSecret: '9695c2d31ff11d1ecc40067fa89be1ca1e58c840',
+        repo: 'Resume',
+        owner: 'Galiful',
+        admin: ['Galiful'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
