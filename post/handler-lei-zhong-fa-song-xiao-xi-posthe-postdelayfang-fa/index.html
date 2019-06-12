@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Mysql 与 JDBC 笔记 | Galiful</title>
+<title>Handler类中发送消息-post()和postDelay()方法 | Galiful</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -109,102 +109,83 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Mysql 与 JDBC 笔记</h2>
-            <div class="post-date">2019-01-24</div>
+            <h2 class="post-title">Handler类中发送消息-post()和postDelay()方法</h2>
+            <div class="post-date">2019-06-10</div>
             
             <div class="post-content">
-              <h2 id="插入">插入：</h2>
-<pre><code>INSERT INTO table_name ( field1, field2,...fieldN ) VALUES
+              <p><img src="https://img-blog.csdn.net/20180326181513374?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
+<img src="https://img-blog.csdn.net/20180326181526567?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
+首先，post和postDelay都是Handler的方法，用以在子线程中发送Runnable对象的方法；</p>
+<p>其次，Android中post()方法可以直接在非UI线程中更新UI，不同与Handelr的Send类方法，需要进行切换；</p>
+<p>最后，两个方法在实现UI线程事件的时间上有所区别，postDelayed()方法用以延期执行，post则是立即执行。
+// 三种切回主线程更新UI的方法<br>
+```
+imageView.post(new Runnable() {
+@Override
+public void run() {
+imageView.setImageBitmap(bitmap1); // 素描图
+}
+});</p>
+<pre><code>            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    orignView.setImageBitmap(bitmap2); // 素描图
+                }
+            });
 
-                      ( value1, value2,...valueN );
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    threeView.setImageBitmap(bitmap3); // 素描图
+                }
+            });
 </code></pre>
-<p>例：mysql&gt; INSERT INTO runoob_tbl</p>
-<pre><code>-&gt; (runoob_title, runoob_author, submission_date)    -&gt; VALUES
+<pre><code>  
+send方法：  
 
--&gt; (&quot;学习 PHP&quot;, &quot;菜鸟教程&quot;, NOW());
-</code></pre>
-<h2 id="查询">查询：</h2>
-<pre><code>SELECT column_name,column_name
-
-FROM table_name[WHERE Clause][LIMIT N][ OFFSET M]
-</code></pre>
-<p>你可以使用 LIMIT 属性来设定返回的记录数。（LIMIT 1避免全表扫描提高查询效率）</p>
-<p>你可以通过OFFSET指定SELECT语句开始查询的数据偏移量。默认情况下偏移量为0。</p>
-<p>代码示例:</p>
-<p>语句1：select * from student limit 9,4</p>
-<p>语句2：slect * from student limit 4 offset 9</p>
-<p>// 语句1和2均返回表student的第10、11、12、13行</p>
-<p>//语句2中的4表示返回4行，9表示从表的第十行开始</p>
-<h2 id="更新">更新：</h2>
-<p><code>UPDATE table_name SET field1=new-value1, field2=new-value2[WHERE Clause]</code></p>
-<h2 id="jdbc">JDBC：</h2>
-<p>在JDBC应用中，如果你已经是稍有水平开发者，你就应该始终以PreparedStatement代替Statement。也就是说，<strong>在任何时候都不要使用Statement。</strong></p>
-<p>基于以下的原因：</p>
-<p>一、代码的可读性和可维护性</p>
-<p>二、PreparedStatement可以尽最大可能提高性能</p>
-<p>三、最重要的一点是极大地提高了安全性</p>
-<p>如果使用Statement而不使用PreparedStatement，则会造成一个<strong>安全性问题：SQL注入</strong></p>
-<p>而如果使用PreparedStatement中包含问号的sql语句，程序就会先对这句sql语句进行判断，就不会出现字符串拼接的现象了。</p>
-<pre><code>Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-String sql = &quot;select id,name,age,description from person&quot;;
-
-Statement state = conn.createStatement();
-</code></pre>
-<p>//执行查询并返回结果集</p>
-<pre><code>ResultSet rs = state.executeQuery(sql);
-
-while(rs.next()) {         //通过next来索引：判断是否有下一个记录
-
-    int id = rs.getInt(1);//int java.sql.ResultSet.getInt(String columnLabel) throws         SQLException
-
-    String name = rs.getString(2);
-
-    int age = rs.getInt(3);
-
-    String description = rs.getString(4);
-
+private Handler handler = new Handler(){
+    @Override
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        switch (msg.what) {      //判断标志位
+            case 1:
+                /**
+                 获取数据，更新UI
+                */
+                break;
+        }
+    }
+};
+   
+ 
+public class WorkThread extends Thread {
+ 
+    @Override
+    public void run() {
+        super.run();
+       /**
+         耗时操作
+        */
+  
+        //从全局池中返回一个message实例，避免多次创建message（如new Message）
+        Message msg =Message.obtain();  
+        msg.obj = data;
+        msg.what=1;   //标志消息的标志
+        handler.sendMessage(msg);
+    } 
 }
 
-rs.close();
 
- state.close();
 
-conn.close(); 
+
 </code></pre>
-<pre><code>Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-String sql = &quot;insert into examstudent&quot; + &quot; values(&quot;+ name + &quot;,&quot; + age + &quot;,'&quot;+ description + &quot;','&quot; + student.getExamCard()+ &quot;)&quot;;
-
-Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-String sql = &quot;insert into person(name,age,description)values(?,?,?)&quot;;
-
-PreparedStatement ps = conn.prepareStatement(sql);
-</code></pre>
-<pre><code>//设置占位符对应的值
-
-ps.setString( 1, p.getName() );
-
-ps.setInt( 2, p.getAge() );
-
-ps.setString( 3, p.getDescription() );
-</code></pre>
-<p>ps.executeUpdate();//注意与Statement  的区别此时函数的参数位置不需要传入SQL语句</p>
-<h2 id="解决sql注入的问题">解决SQL注入的问题</h2>
-<p>String querySql =&quot;select name , age from person_1 WHERE name= ? AND password= ? LIMIT 1&quot;;</p>
-<p>PreparedStatement ps = conn.prepareStatement(querySql);</p>
-<p>ps.setString(1,username);</p>
-<p>ps.setString(2,password);</p>
-<p>Log.d(&quot;tag&quot;,querySql);</p>
-<p>ResultSet result = ps.executeQuery();</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://galiful.github.io/Resume//tag/qpSl6G65A" class="tag">
-                    Mysql
+                  <a href="https://galiful.github.io/Resume//tag/q-BOAHw9o" class="tag">
+                    Android
                   </a>
                 
               </div>
@@ -212,9 +193,9 @@ ps.setString( 3, p.getDescription() );
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://galiful.github.io/Resume//post/androidgradle-cha-jian-ban-ben-hao-yu-gradle-ban-ben-hao-dui-ying-guan-xi">
+                <a href="https://galiful.github.io/Resume//post/liang-chong-activity-de-sheng-ming-zhou-qi-ji-camera-zi-yuan-de-shi-fang">
                   <h3 class="post-title">
-                    Android:gradle 插件版本号与gradle 版本号对应关系
+                    两种Activity的生命周期及Camera资源的释放
                   </h3>
                 </a>
               </div>

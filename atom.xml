@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://galiful.github.io/Resume/</id>
     <title>Galiful</title>
-    <updated>2019-06-10T04:50:32.059Z</updated>
+    <updated>2019-06-12T05:17:23.645Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://galiful.github.io/Resume/"/>
     <link rel="self" href="https://galiful.github.io/Resume//atom.xml"/>
@@ -10,6 +10,80 @@
     <logo>https://galiful.github.io/Resume//images/avatar.png</logo>
     <icon>https://galiful.github.io/Resume//favicon.ico</icon>
     <rights>All rights reserved 2019, Galiful</rights>
+    <entry>
+        <title type="html"><![CDATA[Handler类中发送消息-post()和postDelay()方法]]></title>
+        <id>https://galiful.github.io/Resume//post/handler-lei-zhong-fa-song-xiao-xi-posthe-postdelayfang-fa</id>
+        <link href="https://galiful.github.io/Resume//post/handler-lei-zhong-fa-song-xiao-xi-posthe-postdelayfang-fa">
+        </link>
+        <updated>2019-06-10T09:49:27.000Z</updated>
+        <content type="html"><![CDATA[<p><img src="https://img-blog.csdn.net/20180326181513374?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
+<img src="https://img-blog.csdn.net/20180326181526567?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
+首先，post和postDelay都是Handler的方法，用以在子线程中发送Runnable对象的方法；</p>
+<p>其次，Android中post()方法可以直接在非UI线程中更新UI，不同与Handelr的Send类方法，需要进行切换；</p>
+<p>最后，两个方法在实现UI线程事件的时间上有所区别，postDelayed()方法用以延期执行，post则是立即执行。
+// 三种切回主线程更新UI的方法<br>
+```
+imageView.post(new Runnable() {
+@Override
+public void run() {
+imageView.setImageBitmap(bitmap1); // 素描图
+}
+});</p>
+<pre><code>            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    orignView.setImageBitmap(bitmap2); // 素描图
+                }
+            });
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    threeView.setImageBitmap(bitmap3); // 素描图
+                }
+            });
+</code></pre>
+<pre><code>  
+send方法：  
+
+private Handler handler = new Handler(){
+    @Override
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        switch (msg.what) {      //判断标志位
+            case 1:
+                /**
+                 获取数据，更新UI
+                */
+                break;
+        }
+    }
+};
+   
+ 
+public class WorkThread extends Thread {
+ 
+    @Override
+    public void run() {
+        super.run();
+       /**
+         耗时操作
+        */
+  
+        //从全局池中返回一个message实例，避免多次创建message（如new Message）
+        Message msg =Message.obtain();  
+        msg.obj = data;
+        msg.what=1;   //标志消息的标志
+        handler.sendMessage(msg);
+    } 
+}
+
+
+
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[两种Activity的生命周期及Camera资源的释放]]></title>
         <id>https://galiful.github.io/Resume//post/liang-chong-activity-de-sheng-ming-zhou-qi-ji-camera-zi-yuan-de-shi-fang</id>
@@ -818,81 +892,6 @@ noDooubleButton.setOnClickListener(new NoDoubleClickListener() {
 		}
 
 });
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[动态权限申请小结]]></title>
-        <id>https://galiful.github.io/Resume//post/dong-tai-quan-xian-shen-qing-xiao-jie</id>
-        <link href="https://galiful.github.io/Resume//post/dong-tai-quan-xian-shen-qing-xiao-jie">
-        </link>
-        <updated>2019-03-16T07:33:48.000Z</updated>
-        <content type="html"><![CDATA[<p>单个权限申请</p>
-<pre><code>if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.READ_CONTACTS }, 1);
-        } else {
-            readContacts();
-        }
-}
-</code></pre>
-<p>重写</p>
-<pre><code>@Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case 1:
-                if (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    readContacts();
-                } else {
-                    Toast.makeText(this, &quot;You denied the permission&quot;, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-        }
-    }
-</code></pre>
-<p>多个权限：</p>
-<p>//定义权限数组</p>
-<pre><code>public  final String[] authBaseArr = {
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_FINE_LOCATION
-    };
-</code></pre>
-<p>//检查权限</p>
-<pre><code>public boolean hasBasePhoneAuth() {
-        PackageManager pm =this.getPackageManager();
-        for (String auth : authBaseArr) {
-            if (pm.checkPermission(auth, this.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
-    }
-</code></pre>
-<p>//申请</p>
-<pre><code>if (android.os.Build.VERSION.SDK_INT &gt;= 23) {
-            if (!hasBasePhoneAuth()) {
-                this.requestPermissions(authBaseArr, authBaseRequestCode);
-                return;
-            }
-        }
-</code></pre>
-<p>//重写onRequestPermissionsResult</p>
-<pre><code>@Override
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 100) {
-            for (int ret : grantResults) {
-                if (ret == 0) {
-                    continue;
-                } else {
-                    Toast.makeText(this, &quot;You denied the permission!&quot;, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            }
-						//执行代码
-        }
-    }
 </code></pre>
 ]]></content>
     </entry>
