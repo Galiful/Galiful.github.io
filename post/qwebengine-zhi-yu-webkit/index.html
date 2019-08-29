@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Jsp | Galiful</title>
+<title>QWebEngine之与webkit | Galiful</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,6 +12,12 @@
 <link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1567046421823">
 <link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -109,28 +115,49 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: Jsp</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://galiful.github.io/Resume//post/jsp-zai-tomcat-shang-bu-shu-he-yun-xing-yuan-li">
-                  <h2 class="post-title">jsp在tomcat上部署和运行原理</h2>
-                </a>
-                <div class="post-date">
-                  2019-01-24
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+          <div class="post-detail">
+            <h2 class="post-title">QWebEngine之与webkit</h2>
+            <div class="post-date">2019-08-28</div>
+            
+            <div class="post-content">
+              <p>自从Qt5.6后引入了QWebEngine，摒弃了原先的QWebkit，这是一款基于chrome浏览器内核引擎，Qt webenginewidgets模块中提供了QWebEngineView这个视图控件来很方便的加载和显示网页，仅需如下几行：</p>
+<pre><code>QWebEngineView* webview = new QWebEngineView;
+webview-&gt;load(QUrl(&quot;https://www.baidu.com/&quot;));
+webview-&gt;show();
+</code></pre>
+<p>与webkit主要区别：
+<img src="https://galiful.github.io/Resume//post-images/1566950985824.png" alt="">
+在我的项目里：webkit不能执行网页里js脚本（也可能是脚本不兼容）~而webengine确可以。</p>
+<p>webengine尽管功能更强，但用到QtWebEngineProcess.exe 占用内存更大</p>
+<pre><code>QWebEngineProfile* engineProfile = ui.webEngineView-&gt;page()-&gt;profile();
+	engineProfile-&gt;clearHttpCache(); //删除缓存
+	QWebEngineCookieStore* cookie = ui.webEngineView-&gt;page()-&gt;profile()-&gt;cookieStore();
+	cookie-&gt;deleteAllCookies();//删除cookie 
+</code></pre>
+<p>刷新时执行此操作，明显看到内存降低然后随网页打开再回升的一个过程，证明可用~</p>
 
-          <div class="pagination-container">
-  
-  
-</div>
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://galiful.github.io/Resume//post/yi-ge-ji-yu-qt-de-zhuo-mian-ying-yong">
+                  <h3 class="post-title">
+                    一个基于qt的桌面应用开发经历
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
 
         </div>
       </div>
@@ -152,6 +179,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '3c41d58bb18a46d0ef13',
+        clientSecret: '9695c2d31ff11d1ecc40067fa89be1ca1e58c840',
+        repo: 'Resume',
+        owner: 'Galiful',
+        admin: ['Galiful'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
