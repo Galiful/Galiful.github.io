@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://galiful.github.io/Resume/</id>
     <title>Galiful</title>
-    <updated>2019-08-29T07:51:52.253Z</updated>
+    <updated>2019-09-19T12:10:48.373Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://galiful.github.io/Resume/"/>
     <link rel="self" href="https://galiful.github.io/Resume//atom.xml"/>
@@ -10,6 +10,42 @@
     <logo>https://galiful.github.io/Resume//images/avatar.png</logo>
     <icon>https://galiful.github.io/Resume//favicon.ico</icon>
     <rights>All rights reserved 2019, Galiful</rights>
+    <entry>
+        <title type="html"><![CDATA[QT 无边框窗口-拖动移动]]></title>
+        <id>https://galiful.github.io/Resume//post/qt-wu-bian-kuang-chuang-kou-tuo-dong-yi-dong</id>
+        <link href="https://galiful.github.io/Resume//post/qt-wu-bian-kuang-chuang-kou-tuo-dong-yi-dong">
+        </link>
+        <updated>2019-08-30T04:09:37.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>//去掉标题栏，无边框窗口，区别是第一个可以鼠标缩放窗口，但上方有一个白条故未采用
+	//setWindowFlags(Qt::CustomizeWindowHint);
+	setWindowFlags(Qt::FramelessWindowHint);
+</code></pre>
+<pre><code>void Qwebengine::mousePressEvent(QMouseEvent* event)
+{
+	if (event-&gt;button() == Qt::LeftButton)
+	{
+		mMousePressed = true;
+		mRelativeSrcPos = event-&gt;globalPos() - pos();
+	}
+}
+
+void Qwebengine::mouseReleaseEvent(QMouseEvent* event)
+{
+	mMousePressed = false;
+}
+
+void Qwebengine::mouseMoveEvent(QMouseEvent* event)
+{
+	if (mMousePressed)
+	{
+		//当前位置减去相对的原点位置得到的是移动距离
+		move(event-&gt;globalPos() - mRelativeSrcPos);
+	}
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[QWebEngine之与webkit]]></title>
         <id>https://galiful.github.io/Resume//post/qwebengine-zhi-yu-webkit</id>
@@ -34,9 +70,10 @@ webview-&gt;show();
 <pre><code>将QtWebEngineProcess.exe与主进程合二为一。
 qputenv(&quot;QTWEBENGINE_CHROMIUM_FLAGS&quot;, &quot;--single-process&quot;);
 </code></pre>
-<p>QWebEngineView的一些设置方法：
-ui.webEngineView-&gt;settings()-&gt;setAttribute(QWebEngineSettings::ShowScrollBars, false);//隐藏滚动条
-更多设置见<a href="https://doc.qt.io/qt-5/qwebenginesettings.html">https://doc.qt.io/qt-5/qwebenginesettings.html</a></p>
+<p>QWebEngineView的一些设置方法：</p>
+<pre><code>ui.webEngineView-&gt;settings()-&gt;setAttribute(QWebEngineSettings::ShowScrollBars, false);//隐藏滚动条
+</code></pre>
+<p><a href="https://doc.qt.io/qt-5/qwebenginesettings.html">https://doc.qt.io/qt-5/qwebenginesettings.html</a></p>
 ]]></content>
     </entry>
     <entry>
@@ -569,16 +606,6 @@ if (EasyPermissions.hasPermissions(this, perms)) {
         <content type="html"><![CDATA[<p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk</a>
 存在由于文章标题过长时导致无法初始化（github pages 机制），解决办法在<a href="https://github.com/gitalk/gitalk/issues/124">这</a>
 <img src="https://galiful.github.io/Resume//post-images/1558314852687.png" alt=""></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[个人随笔转移到Github pages]]></title>
-        <id>https://galiful.github.io/Resume//post/ge-ren-sui-bi-zhuan-yi-dao-github-pages</id>
-        <link href="https://galiful.github.io/Resume//post/ge-ren-sui-bi-zhuan-yi-dao-github-pages">
-        </link>
-        <updated>2019-05-10T08:01:45.000Z</updated>
-        <content type="html"><![CDATA[<p>今天2019年5月10日
-将之前在<a href="https://www.jianshu.com/u/5b0d57ea33fe">简书</a>的个人转载也好，自己学习记录也好，转移到Github 开放仓库<a href="https://github.com/Galiful/Resume">Resume</a>中</p>
 ]]></content>
     </entry>
 </feed>

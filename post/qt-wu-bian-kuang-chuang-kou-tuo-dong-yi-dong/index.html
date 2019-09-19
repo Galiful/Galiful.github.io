@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>android之onClick和onTouch防止点击过快的处理方法 | Galiful</title>
+<title>QT 无边框窗口-拖动移动 | Galiful</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -116,120 +116,47 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">android之onClick和onTouch防止点击过快的处理方法</h2>
-            <div class="post-date">2019-03-16</div>
+            <h2 class="post-title">QT 无边框窗口-拖动移动</h2>
+            <div class="post-date">2019-08-30</div>
             
             <div class="post-content">
-              <p>注：
-<code>Calendar.getInstance().getTimeInMillis(); //每次调用onClick时的时间，可返回long</code></p>
-<p><strong>onclick</strong></p>
-<pre><code>public static final int MIN_CLICK_DELAY_TIME = 1000;
-
-   private long lastClickTime = 0;
-
-          @Override
-
-          public void onClick(View v) {
-
-              long currentTime = Calendar.getInstance().getTimeInMillis();
-
-              if (currentTime - lastClickTime &gt; MIN_CLICK_DELAY_TIME) {
-
-                  lastClickTime = currentTime;
-
-                 /**
-                  *执行代码
-                  /
-
-              }
-
-          } 
+              <pre><code>//去掉标题栏，无边框窗口，区别是第一个可以鼠标缩放窗口，但上方有一个白条故未采用
+	//setWindowFlags(Qt::CustomizeWindowHint);
+	setWindowFlags(Qt::FramelessWindowHint);
 </code></pre>
-<p><strong>onTouch</strong>
-（自写，由于onTouch抬起按下都会有监听事件，下面代码逻辑为：一次完整按下抬起过程没有时间限制，第二次按下须与上次抬起有MIN_CLICK_DELAY_TIME 间隔  ）</p>
-<pre><code>public static final int MIN_CLICK_DELAY_TIME = 1000;
-long upTime =0;
-long downTime =0;
-
-@Override
-
-public boolean onTouch(View v, MotionEvent event) {
-
-    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-            downTime = Calendar.getInstance().getTimeInMillis();
-
-      }
-
-    if (downTime -upTime &gt;MIN_CLICK_DELAY_TIME) {
-                /**
-                *执行代码
-                 /
-    }
-
-    if(event.getAction() == MotionEvent.ACTION_UP){
-
-            upTime=Calendar.getInstance().getTimeInMillis();
-
-        }
-return false;
-}
-</code></pre>
-<p>如果程序需要在多个地方使用，可以自定义一个NoDoubleClickListener（NoDoubleTouchListener）,继承自OnClickListener（OnTouchListener）：</p>
-<p>/代码2</p>
-<pre><code>public abstract class NoDoubleClickListener implements OnClickListener {
-
-		public static final int MIN_CLICK_DELAY_TIME = 1000;
-
-		private long lastClickTime = 0;
-
-		@Override
-
-		public void onClick(View v) {
-
-				long currentTime = Calendar.getInstance().getTimeInMillis();
-
-				if (currentTime - lastClickTime &gt; MIN_CLICK_DELAY_TIME) {
-
-						lastClickTime = currentTime;
-
-						onNoDoubleClick(v);
-
-				}
-
-		} 
-
+<pre><code>void Qwebengine::mousePressEvent(QMouseEvent* event)
+{
+	if (event-&gt;button() == Qt::LeftButton)
+	{
+		mMousePressed = true;
+		mRelativeSrcPos = event-&gt;globalPos() - pos();
+	}
 }
 
-noDooubleButton.setOnClickListener(new NoDoubleClickListener() {
+void Qwebengine::mouseReleaseEvent(QMouseEvent* event)
+{
+	mMousePressed = false;
+}
 
-		@Override
+void Qwebengine::mouseMoveEvent(QMouseEvent* event)
+{
+	if (mMousePressed)
+	{
+		//当前位置减去相对的原点位置得到的是移动距离
+		move(event-&gt;globalPos() - mRelativeSrcPos);
+	}
+}
 
-		public void onNoDoubleClick(View v) {
-
-				submitOrder();//执行代码
-
-		}
-
-});
 </code></pre>
 
             </div>
             
-              <div class="tag-container">
-                
-                  <a href="https://galiful.github.io/Resume//tag/q-BOAHw9o" class="tag">
-                    Android
-                  </a>
-                
-              </div>
-            
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://galiful.github.io/Resume//post/dong-tai-quan-xian-shen-qing-xiao-jie">
+                <a href="https://galiful.github.io/Resume//post/qwebengine-zhi-yu-webkit">
                   <h3 class="post-title">
-                    动态权限申请小结
+                    QWebEngine之与webkit
                   </h3>
                 </a>
               </div>
