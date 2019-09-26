@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://galiful.github.io/Resume/</id>
     <title>Galiful</title>
-    <updated>2019-09-26T04:59:25.594Z</updated>
+    <updated>2019-09-26T05:02:06.462Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://galiful.github.io/Resume/"/>
     <link rel="self" href="https://galiful.github.io/Resume//atom.xml"/>
@@ -603,7 +603,8 @@ if (EasyPermissions.hasPermissions(this, perms)) {
         <link href="https://galiful.github.io/Resume//post/ji-cheng-gitalk-ping-lun">
         </link>
         <updated>2019-05-20T01:07:25.000Z</updated>
-        <content type="html"><![CDATA[<p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk</a><br>
+        <content type="html"><![CDATA[<!-- more -->
+<p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk</a><br>
 存在由于文章标题过长时导致无法初始化（github pages 机制），解决办法在<a href="https://github.com/gitalk/gitalk/issues/124">这</a><br>
 <img src="https://galiful.github.io/Resume//post-images/1558314852687.png" alt=""></p>
 ]]></content>
