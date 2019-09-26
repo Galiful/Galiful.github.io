@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1568895045105">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1569457281903">
 <link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://galiful.github.io/Resume/">
-        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1568895045105" class="site-logo">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1569457281903" class="site-logo">
         <h1 class="site-title">Galiful</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -120,18 +120,18 @@
             <div class="post-date">2019-06-10</div>
             
             <div class="post-content">
-              <p><img src="https://img-blog.csdn.net/20180326181513374?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
-<img src="https://img-blog.csdn.net/20180326181526567?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
+              <p><img src="https://img-blog.csdn.net/20180326181513374?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br>
+<img src="https://img-blog.csdn.net/20180326181526567?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br>
 首先，post和postDelay都是Handler的方法，用以在子线程中发送Runnable对象的方法；</p>
 <p>其次，Android中post()方法可以直接在非UI线程中更新UI，不同与Handelr的Send类方法，需要进行切换；</p>
-<p>最后，两个方法在实现UI线程事件的时间上有所区别，postDelayed()方法用以延期执行，post则是立即执行。
+<p>最后，两个方法在实现UI线程事件的时间上有所区别，postDelayed()方法用以延期执行，post则是立即执行。<br>
 // 三种切回主线程更新UI的方法<br>
-```
-imageView.post(new Runnable() {
-@Override
-public void run() {
-imageView.setImageBitmap(bitmap1); // 素描图
-}
+```<br>
+imageView.post(new Runnable() {<br>
+@Override<br>
+public void run() {<br>
+imageView.setImageBitmap(bitmap1); // 素描图<br>
+}<br>
 });</p>
 <pre><code>            runOnUiThread(new Runnable() {
                 @Override

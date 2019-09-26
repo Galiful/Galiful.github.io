@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1568895045105">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1569457281903">
 <link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://galiful.github.io/Resume/">
-        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1568895045105" class="site-logo">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1569457281903" class="site-logo">
         <h1 class="site-title">Galiful</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -125,7 +125,7 @@
 <p><strong>implementation指令</strong></p>
 <p>这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开</p>
 <p>所以你module中的类可以用，但jar怎么都引用不了，你开始慌了...</p>
-<p>正文：
+<p>正文：<br>
 在3.0版本中，compile 指令被标注为过时方法，而新增了两个依赖指令，一个是implement 和api，这两个都可以进行依赖添加，但是有什么区别呢？</p>
 <p>新建工程默认生成的app的build.gradle文件中的依赖：</p>
 <pre><code>dependencies {
@@ -156,11 +156,11 @@
 <p>这时候，在testsdk里边的java代码是可以访问gson的。</p>
 <p>另一个module为app，app依赖于testsdk：</p>
 <p><code>implementation project(':testsdk')</code></p>
-<p>这时候，因为testsdk使用的是implementation 指令来依赖gson，所以app里边不能引用gson。
+<p>这时候，因为testsdk使用的是implementation 指令来依赖gson，所以app里边不能引用gson。<br>
 但是，如果testsdk使用的是api来引用gson：</p>
 <p><code>api 'com.google.code.gson:gson:2.8.2'</code></p>
 <p>则与gradle3.0.0之前的compile指令的效果完全一样，app的module也可以引用gson。这就是api和implementation的区别。</p>
-<p>建议
+<p>建议<br>
 在Google IO 相关话题的中提到了一个建议，就是依赖首先应该设置为implementation的，如果没有错，那就用implementation，如果有错，那么使用api指令。使用implementation会使编译速度有所增快。</p>
 <p>原文：https://blog.csdn.net/mybook1122/article/details/78657392</p>
 

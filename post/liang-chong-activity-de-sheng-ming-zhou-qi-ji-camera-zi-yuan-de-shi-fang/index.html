@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1568895045105">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1569457281903">
 <link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://galiful.github.io/Resume/">
-        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1568895045105" class="site-logo">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1569457281903" class="site-logo">
         <h1 class="site-title">Galiful</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -125,7 +125,7 @@
 </blockquote>
 <h3 id="再次认识活动的生命周期">再次认识活动的生命周期</h3>
 <p>一 返回栈<br>
-1.定义： Android是使用任务（Task）来管理活动的，一个任务就是一组存放在栈里的活动 的集合这个栈也被称作返回栈（Back Stack）。
+1.定义： Android是使用任务（Task）来管理活动的，一个任务就是一组存放在栈里的活动 的集合这个栈也被称作返回栈（Back Stack）。<br>
 2.栈顶：存放刚启动的一个新的活动。（当我们 按下 Back键或调用 finish()方法去销毁一个活动时，处于栈顶的活动会出栈，这时前一个入 栈的活动就会重新处于栈顶的位置。系统总是会显示处于栈顶的活动给用户。）</p>
 <p>二 活动状态<br>
 1.运行状态：活动位于返回栈的栈顶时（系统最不愿意回收的 就是处于运行状态的活动，因为这会带来非常差的用户体验。）</p>
@@ -146,12 +146,12 @@
 <h3 id="演绎">演绎</h3>
 <p>重温以上知识点后重新演绎上述场景，<br>
 <strong>twoActivity为正常活动时</strong>：<br>
-MainActivity   执行：
+MainActivity   执行：<br>
 onCreate()<br>
 onStart()<br>
 onResume() 方法<br>
 然后点击第一个按钮启动 NormalActivity：（由于 NormalActivity已经把 MainActivity完全遮挡住，）<br>
-执行：
+执行：<br>
 onPause()<br>
 onStop()<br>
 然后按下 Back键返回 MainActivity（由于之前 MainActivity已经进入了停止状态）<br>
@@ -172,16 +172,16 @@ onPause()<br>
 onStop()<br>
 onDestroy()</p>
 <p><strong>结论</strong>：<strong>dialogActivity不会执行onStop、onRestart()、 onStart()</strong>，导致相机资源没有正常回调（也许可以通过修改相机类修复）<br>
-下面是项目中（asrDemo→DetectLoginActivity）生命周期log：
-<img src="https://galiful.github.io/Resume//post-images/1560134889431.png" alt="">
+下面是项目中（asrDemo→DetectLoginActivity）生命周期log：<br>
+<img src="https://galiful.github.io/Resume//post-images/1560134889431.png" alt=""><br>
 可见在这台设备上，在执行AsrDemo onPause后就执行了DetectLoginActivity onCreate，如果没有合理释放资源必然出现占用错误（camera can not connect 等...）<br>
-当DetectLoginActivity为对话框式活动时生命周期log：
-<img src="https://galiful.github.io/Resume//post-images/1560134787747.png" alt="">
+当DetectLoginActivity为对话框式活动时生命周期log：<br>
+<img src="https://galiful.github.io/Resume//post-images/1560134787747.png" alt=""><br>
 <strong>这次跳转过程asrDemo中camera并没有回调发生</strong><br>
 在asrDemo、DetectLoginActivity中camera释放放在onPause()，以在asrDemo跳转和DetectLoginActivity back时释放。</p>
 <h3 id="小结">小结</h3>
-<p>关于如何解决在有camera活动打开另一个camera活动，且第二个又是DialogActivity，中的camera正常调用问题?
-本次项目做法是将第二个活动改为普通活动（黑线~）
+<p>关于如何解决在有camera活动打开另一个camera活动，且第二个又是DialogActivity，中的camera正常调用问题?<br>
+本次项目做法是将第二个活动改为普通活动（黑线~）<br>
 有大佬说可以把dialogActivity改为<strong>DialogFragment</strong>，生命周期就正常了，自己做了尝试，跟继承Dialog类似，由于项目设计代码较多且是引用的，半途中止，先实现功能再说，后面自己写时尝试再使用DialogFragment看看效果</p>
 
             </div>

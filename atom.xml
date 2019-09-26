@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://galiful.github.io/Resume/</id>
     <title>Galiful</title>
-    <updated>2019-09-19T12:18:05.054Z</updated>
+    <updated>2019-09-26T04:59:25.594Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://galiful.github.io/Resume/"/>
     <link rel="self" href="https://galiful.github.io/Resume//atom.xml"/>
@@ -57,8 +57,8 @@ void Qwebengine::mouseMoveEvent(QMouseEvent* event)
 webview-&gt;load(QUrl(&quot;https://www.baidu.com/&quot;));
 webview-&gt;show();
 </code></pre>
-<p>与webkit主要区别：
-<img src="https://galiful.github.io/Resume//post-images/1566950985824.png" alt="">
+<p>与webkit主要区别：<br>
+<img src="https://galiful.github.io/Resume//post-images/1566950985824.png" alt=""><br>
 在我的项目里：webkit不能执行网页里js脚本（也可能是脚本不兼容）~而webengine确可以。</p>
 <p>webengine尽管功能更强，但用到QtWebEngineProcess.exe 占用内存更大</p>
 <pre><code>QWebEngineProfile* engineProfile = ui.webEngineView-&gt;page()-&gt;profile();
@@ -82,12 +82,12 @@ qputenv(&quot;QTWEBENGINE_CHROMIUM_FLAGS&quot;, &quot;--single-process&quot;);
         <link href="https://galiful.github.io/Resume//post/yi-ge-ji-yu-qt-de-zhuo-mian-ying-yong">
         </link>
         <updated>2019-08-26T05:20:18.000Z</updated>
-        <content type="html"><![CDATA[<p>这一个月没有更新日志和git。。。
-因为在忙一个桌面应用，因为之前都没有怎么接触过，环境和代码都是一点点摸索，自是也没有传git。
-项目需求是显示画面，和服务器传来的数据，做界面显示，功能很简单
-摄像头用的网络摄像头，对，萤石
-界面显示用qt，没啥动画也不会，
-中间画面本来用的是萤石demo，后来基本完成了，项目要求画面换协议，于是用的是webengine显示网页的形式，
+        <content type="html"><![CDATA[<p>这一个月没有更新日志和git。。。<br>
+因为在忙一个桌面应用，因为之前都没有怎么接触过，环境和代码都是一点点摸索，自是也没有传git。<br>
+项目需求是显示画面，和服务器传来的数据，做界面显示，功能很简单<br>
+摄像头用的网络摄像头，对，萤石<br>
+界面显示用qt，没啥动画也不会，<br>
+中间画面本来用的是萤石demo，后来基本完成了，项目要求画面换协议，于是用的是webengine显示网页的形式，<br>
 项目目前有近2个月时间了，基本完成，后面可能还有改，因为项目对画面延迟要求很高~</p>
 ]]></content>
     </entry>
@@ -196,7 +196,7 @@ crashHandler.init(this);
 <p>Python 是一种解释型语言： 这意味着开发过程中没有了编译这个环节。类似于PHP和Perl语言。</p>
 <p>Python 是交互式语言： 这意味着，您可以在一个 Python 提示符 &gt;&gt;&gt; 后直接执行代码。</p>
 <p>Python 是面向对象语言: 这意味着Python支持面向对象的风格或代码封装在对象的编程技术。</p>
-<p>Python 是初学者的语言：Python 对初级程序员而言，是一种伟大的语言，它支持广泛的应用程序开发，从简单的文字处理到 WWW 浏览器再到游戏。
+<p>Python 是初学者的语言：Python 对初级程序员而言，是一种伟大的语言，它支持广泛的应用程序开发，从简单的文字处理到 WWW 浏览器再到游戏。<br>
 <em>总之，优雅~</em></p>
 <p>优点</p>
 <ul>
@@ -227,18 +227,18 @@ crashHandler.init(this);
         <link href="https://galiful.github.io/Resume//post/handler-lei-zhong-fa-song-xiao-xi-posthe-postdelayfang-fa">
         </link>
         <updated>2019-06-10T09:49:27.000Z</updated>
-        <content type="html"><![CDATA[<p><img src="https://img-blog.csdn.net/20180326181513374?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
-<img src="https://img-blog.csdn.net/20180326181526567?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
+        <content type="html"><![CDATA[<p><img src="https://img-blog.csdn.net/20180326181513374?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br>
+<img src="https://img-blog.csdn.net/20180326181526567?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br>
 首先，post和postDelay都是Handler的方法，用以在子线程中发送Runnable对象的方法；</p>
 <p>其次，Android中post()方法可以直接在非UI线程中更新UI，不同与Handelr的Send类方法，需要进行切换；</p>
-<p>最后，两个方法在实现UI线程事件的时间上有所区别，postDelayed()方法用以延期执行，post则是立即执行。
+<p>最后，两个方法在实现UI线程事件的时间上有所区别，postDelayed()方法用以延期执行，post则是立即执行。<br>
 // 三种切回主线程更新UI的方法<br>
-```
-imageView.post(new Runnable() {
-@Override
-public void run() {
-imageView.setImageBitmap(bitmap1); // 素描图
-}
+```<br>
+imageView.post(new Runnable() {<br>
+@Override<br>
+public void run() {<br>
+imageView.setImageBitmap(bitmap1); // 素描图<br>
+}<br>
 });</p>
 <pre><code>            runOnUiThread(new Runnable() {
                 @Override
@@ -306,7 +306,7 @@ public class WorkThread extends Thread {
 </blockquote>
 <h3 id="再次认识活动的生命周期">再次认识活动的生命周期</h3>
 <p>一 返回栈<br>
-1.定义： Android是使用任务（Task）来管理活动的，一个任务就是一组存放在栈里的活动 的集合这个栈也被称作返回栈（Back Stack）。
+1.定义： Android是使用任务（Task）来管理活动的，一个任务就是一组存放在栈里的活动 的集合这个栈也被称作返回栈（Back Stack）。<br>
 2.栈顶：存放刚启动的一个新的活动。（当我们 按下 Back键或调用 finish()方法去销毁一个活动时，处于栈顶的活动会出栈，这时前一个入 栈的活动就会重新处于栈顶的位置。系统总是会显示处于栈顶的活动给用户。）</p>
 <p>二 活动状态<br>
 1.运行状态：活动位于返回栈的栈顶时（系统最不愿意回收的 就是处于运行状态的活动，因为这会带来非常差的用户体验。）</p>
@@ -327,12 +327,12 @@ public class WorkThread extends Thread {
 <h3 id="演绎">演绎</h3>
 <p>重温以上知识点后重新演绎上述场景，<br>
 <strong>twoActivity为正常活动时</strong>：<br>
-MainActivity   执行：
+MainActivity   执行：<br>
 onCreate()<br>
 onStart()<br>
 onResume() 方法<br>
 然后点击第一个按钮启动 NormalActivity：（由于 NormalActivity已经把 MainActivity完全遮挡住，）<br>
-执行：
+执行：<br>
 onPause()<br>
 onStop()<br>
 然后按下 Back键返回 MainActivity（由于之前 MainActivity已经进入了停止状态）<br>
@@ -353,16 +353,16 @@ onPause()<br>
 onStop()<br>
 onDestroy()</p>
 <p><strong>结论</strong>：<strong>dialogActivity不会执行onStop、onRestart()、 onStart()</strong>，导致相机资源没有正常回调（也许可以通过修改相机类修复）<br>
-下面是项目中（asrDemo→DetectLoginActivity）生命周期log：
-<img src="https://galiful.github.io/Resume//post-images/1560134889431.png" alt="">
+下面是项目中（asrDemo→DetectLoginActivity）生命周期log：<br>
+<img src="https://galiful.github.io/Resume//post-images/1560134889431.png" alt=""><br>
 可见在这台设备上，在执行AsrDemo onPause后就执行了DetectLoginActivity onCreate，如果没有合理释放资源必然出现占用错误（camera can not connect 等...）<br>
-当DetectLoginActivity为对话框式活动时生命周期log：
-<img src="https://galiful.github.io/Resume//post-images/1560134787747.png" alt="">
+当DetectLoginActivity为对话框式活动时生命周期log：<br>
+<img src="https://galiful.github.io/Resume//post-images/1560134787747.png" alt=""><br>
 <strong>这次跳转过程asrDemo中camera并没有回调发生</strong><br>
 在asrDemo、DetectLoginActivity中camera释放放在onPause()，以在asrDemo跳转和DetectLoginActivity back时释放。</p>
 <h3 id="小结">小结</h3>
-<p>关于如何解决在有camera活动打开另一个camera活动，且第二个又是DialogActivity，中的camera正常调用问题?
-本次项目做法是将第二个活动改为普通活动（黑线~）
+<p>关于如何解决在有camera活动打开另一个camera活动，且第二个又是DialogActivity，中的camera正常调用问题?<br>
+本次项目做法是将第二个活动改为普通活动（黑线~）<br>
 有大佬说可以把dialogActivity改为<strong>DialogFragment</strong>，生命周期就正常了，自己做了尝试，跟继承Dialog类似，由于项目设计代码较多且是引用的，半途中止，先实现功能再说，后面自己写时尝试再使用DialogFragment看看效果</p>
 ]]></content>
     </entry>
@@ -375,41 +375,41 @@ onDestroy()</p>
         <content type="html"><![CDATA[<h2 id="记一次集成百度facesdk中遇到的知识盲点">记一次集成百度facesdk中遇到的知识盲点。</h2>
 <p>一些app通过继承application作为 应用程序入口调用，避免手机内存过小,杀死后台进程（在手机设置里面，对应于某一个应用，虽然没有启动，但是上面有一个终止按钮，说明这个应用时启动的，只是里面没有Activity,所以说使用android退出把一个应用退出，实际上他所对应的Application是没有退出的（因为他的生命周期最长），只是对应的Activity退出了而已）</p>
 <h3 id="认识application">认识application：</h3>
-<p>android开发文档中关于application的描述 :
+<p>android开发文档中关于application的描述 :<br>
 Base class for those who need to maintain global application state. You can provide your own implementation by specifying its name in your AndroidManifest.xml's &lt; application&gt; tag, which will cause that class to be instantiated for you when the process for your application/package is created.</p>
 <h4 id="application-配置全局context">Application 配置全局Context</h4>
 <p>第一步、写一个全局的单例模式的MyApplication继承自Application 覆盖onCreate ，在这个方法里面实例化Application,并且值是全局的,可以使用Context的 getApplicationContext或者Activity的getApplication方法来获得一个application对象来拿到它。</p>
 <ol>
 <li>
-<p>oncreate方法
-application对应的也有一个onCreate,这个才是真正的入口，不过一般我们使用的是Activity的onCreate方法作为入口使用了。
-<em>开发文档描述</em>：
-* Called when the application is starting, before any other application
-* objects have been created.  Implementations should be as quick as
-* possible (for example using lazy initialization of state) since the time
-* spent in this function directly impacts the performance of starting the
-* first activity, service, or receiver in a process.
+<p>oncreate方法<br>
+application对应的也有一个onCreate,这个才是真正的入口，不过一般我们使用的是Activity的onCreate方法作为入口使用了。<br>
+<em>开发文档描述</em>：<br>
+* Called when the application is starting, before any other application<br>
+* objects have been created.  Implementations should be as quick as<br>
+* possible (for example using lazy initialization of state) since the time<br>
+* spent in this function directly impacts the performance of starting the<br>
+* first activity, service, or receiver in a process.<br>
 * If you override this method, be sure to call super.onCreate()</p>
 </li>
 <li>
-<p>onConfigurationChanged方法
-当屏幕方向发生改变了，就会调用这个方法，并且对应的Activity中也会调用对应的方法
+<p>onConfigurationChanged方法<br>
+当屏幕方向发生改变了，就会调用这个方法，并且对应的Activity中也会调用对应的方法<br>
 因此不必再次处理</p>
 </li>
 </ol>
-<p>第二步、配置全局的Context
+<p>第二步、配置全局的Context<br>
 <code>&lt;application android:name=&quot;com.example.demo.MyApplication&quot; &gt;&lt;/application&gt;</code></p>
 <p>第三步、使用的时候用的时候根据类的名称访问Context，manifest文件<application>有一项是android:name属性，一般你新建一个android项目的话，这个name属性是没有的，如果想要使用自定义的MyApplication的话，就要添加上一个name属性，如上面显示的那样，然后自定义一个类：MyApplication来继承application即可</p>
 <h4 id="android程序的入口点">Android程序的入口点</h4>
 <p>Android使用Google Dalvik VM，相对于传统Java VM而言有着很大的不同，在Sun的Java体系中入口点和标准c语言一样是main()，而每个Android程序都包含着一个Application实例，一个Application实例中有多个Activity、Service、ContentProvider或Broadcast Receiver。因为大部分的应用都包含Activity所以，说很多网友认为是Activity的onCreate，但是你没有发现你的工程中有多个Activity吗? 你可能没有见过没有Activity的Android应用吧。其实在android.app.Application这个包的onCreate才是真正的Android入口点，只不过大多数开发者无需重写该类，他的继承关系如下图:</p>
-<p>java.lang.Object
-? android.content.Context
-? android.content.ContextWrapper
+<p>java.lang.Object<br>
+? android.content.Context<br>
+? android.content.ContextWrapper<br>
 ? android.app.Application</p>
 <p>android.app.Application类包含了4个公开的方法</p>
-<p>void  onConfigurationChanged(Configuration newConfig)
-void  onCreate()  //这里才是真正的入口点。
-void  onLowMemory()
+<p>void  onConfigurationChanged(Configuration newConfig)<br>
+void  onCreate()  //这里才是真正的入口点。<br>
+void  onLowMemory()<br>
 void  onTerminate()</p>
 <p>所以希望大家，记住真正的Android入口点是application的main，你可以看下androidmanifest.xml的包含关系就清楚了，并不是每个应用都必须有Activity的。</p>
 <pre><code>问题一：
@@ -419,8 +419,8 @@ void  onTerminate()</p>
 <pre><code>1.继承：假如你有两个application类：ApplicationOne.java和ApplicationTwo.java
 </code></pre>
 <p>ApplicationOne才是你真正的程序入口，ApplicationTwo是第三方sdk或库里定义的，那么你可以把ApplicationOne继承于ApplicationTwo。</p>
-<p>2.声明：在AndroidManifest.xml里声明的时候，只需要声明ApplicationOne就行了。因为AndroidManifest.xml中第一个注册的Application才真正会被PackageManager解析，才是有效的。
-<img src="https://galiful.github.io/Resume//post-images/1559609327818.png" alt="">
+<p>2.声明：在AndroidManifest.xml里声明的时候，只需要声明ApplicationOne就行了。因为AndroidManifest.xml中第一个注册的Application才真正会被PackageManager解析，才是有效的。<br>
+<img src="https://galiful.github.io/Resume//post-images/1559609327818.png" alt=""><br>
 详见：<a href="https://developer.android.google.cn/reference/android/app/Application?hl=en">Application  |  Android Developers</a></p>
 ]]></content>
     </entry>
@@ -431,15 +431,15 @@ void  onTerminate()</p>
         </link>
         <updated>2019-05-27T01:58:26.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://segmentfault.com/a/1190000012247350">https://segmentfault.com/a/1190000012247350</a></p>
-<p>GitHub地址：https://github.com/googlesamp...
-EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了操作的过程。
+<p>GitHub地址：https://github.com/googlesamp...<br>
+EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了操作的过程。<br>
 使用过程： 没有什么先后顺序，下面没有按这个顺序。这么做是可以的，当然还有其他的使用方法</p>
 <blockquote>
-<p>1、builde gradle中依赖
-2、清单文件中声明权限
-3、重写onRequestPermissionsResult()方法，把执行操作给easyPermissions来
-4、通过hasPermissions检查权限，或者原生的也行，然后去申请权限
-5、实现EasyPermissions.PermissionCallbacks接口，重写两个方法，成功或失败
+<p>1、builde gradle中依赖<br>
+2、清单文件中声明权限<br>
+3、重写onRequestPermissionsResult()方法，把执行操作给easyPermissions来<br>
+4、通过hasPermissions检查权限，或者原生的也行，然后去申请权限<br>
+5、实现EasyPermissions.PermissionCallbacks接口，重写两个方法，成功或失败<br>
 6、在成功或者失败方法中编写要具体做的事。</p>
 </blockquote>
 <h3 id="github地址">GitHub地址：</h3>
@@ -448,9 +448,9 @@ EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了�
     compile 'pub.devrel:easypermissions:1.0.1'
 }
 </code></pre>
-<p>(2)再在清单文件中声明要申请的危险权限
+<p>(2)再在清单文件中声明要申请的危险权限<br>
 如果不声明的话，直接在代码中写也能申请成功，但是好想不会弹出询问框，直接就申请了</p>
-<p>(3)申请权限
+<p>(3)申请权限<br>
 可以直接申请</p>
 <pre><code>EasyPermissions.requestPermissions(
                     MainActivity.this,
@@ -459,7 +459,7 @@ EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了�
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.RECORD_AUDIO);
 </code></pre>
-<p>最好还是检查一下权限是否申请：
+<p>最好还是检查一下权限是否申请：<br>
 EasyPermissions.hasPermissions(Context context, @NonNull String… perms)方法来检测一个或者多个权限是否被允许，第二个参数是个可变数组，可以申请多个</p>
 <pre><code>String[] perms = {Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION};
 if (EasyPermissions.hasPermissions(this, perms)) {
@@ -471,13 +471,13 @@ if (EasyPermissions.hasPermissions(this, perms)) {
             RC_CAMERA_AND_LOCATION, perms);
 }
 </code></pre>
-<p>下面来说一个申请权限这个方法：
-EasyPermissions.requestPermissions():
-requestPermissions() 一般用这个四个参数的就可以
-第一个参数：Context对象
-第二个参数：权限弹窗上的文字提示语。告诉用户，这个权限用途。
-第三个参数：这次请求权限的唯一标识请求码，code。
-第四个参数 : 一些系列的权限。
+<p>下面来说一个申请权限这个方法：<br>
+EasyPermissions.requestPermissions():<br>
+requestPermissions() 一般用这个四个参数的就可以<br>
+第一个参数：Context对象<br>
+第二个参数：权限弹窗上的文字提示语。告诉用户，这个权限用途。<br>
+第三个参数：这次请求权限的唯一标识请求码，code。<br>
+第四个参数 : 一些系列的权限。<br>
 这里说一下第二个参数，不是第一次申请系统默认弹出的提示语，而是，我们拒绝后，再次点击申请弹出的对话框，，显示我们设置的提示语，下面有两个按钮，确认和取消，我就不贴图了。</p>
 <p>还有六个参数的，多了两个参数就是，修改我们上面那个确认和取消的字样，你可以干成yes 和no.</p>
 <h3 id="4-重写onrequestpermissionsresult方法把执行操作给easypermissions">4、重写onRequestPermissionsResult()方法，把执行操作给easyPermissions</h3>
@@ -527,9 +527,9 @@ public void onPermissionsDenied(int requestCode, List&lt;String&gt; list) {
 }
 }
 </code></pre>
-<p>接下来就要说一下成功或者失败后的操作了： 申请成功就直接做该做的事就行了，没啥。
-申请如果失败了，这时候有个方法出现了EasyPermissions.somePermissionPermanentlyDenied(this, perms)
-这个方法是谷歌建议的。就是在我们点了不在询问并拒绝，会弹出对话框，告诉用户这个权限时干嘛的，很重要，建议不要拒绝哈哈
+<p>接下来就要说一下成功或者失败后的操作了： 申请成功就直接做该做的事就行了，没啥。<br>
+申请如果失败了，这时候有个方法出现了EasyPermissions.somePermissionPermanentlyDenied(this, perms)<br>
+这个方法是谷歌建议的。就是在我们点了不在询问并拒绝，会弹出对话框，告诉用户这个权限时干嘛的，很重要，建议不要拒绝哈哈<br>
 比如这样：</p>
 <pre><code>@Override
 public void onPermissionsDenied(int requestCode, List&lt;String&gt; perms) {
@@ -571,9 +571,9 @@ public void onPermissionsDenied(int requestCode, List&lt;String&gt; perms) {
 }
 </code></pre>
 <h3 id="6-可选afterpermissiongranted注解">6、(可选)@AfterPermissionGranted()注解</h3>
-<p>使用 AfterPermissioonGranted 注解。这是可选的，但是提供出来是为了方便。如果所有的请求的权限都被授予了，被注解的方法将会被执行，这样做是为了简化通常的请求权限成功之后再调用方法的流程。同时也可以在onPermissionsGranted 的回调中添加逻辑操作：
-比如官网上的这个实例代码：
-这里的方法名可以自己取，主要是权限都申请完，就调用这个方法，执行里面的操作。
+<p>使用 AfterPermissioonGranted 注解。这是可选的，但是提供出来是为了方便。如果所有的请求的权限都被授予了，被注解的方法将会被执行，这样做是为了简化通常的请求权限成功之后再调用方法的流程。同时也可以在onPermissionsGranted 的回调中添加逻辑操作：<br>
+比如官网上的这个实例代码：<br>
+这里的方法名可以自己取，主要是权限都申请完，就调用这个方法，执行里面的操作。<br>
 其实就相当于在onPermissionsGranted()调用这个方法而已:</p>
 <pre><code>@AfterPermissionGranted(RC_CAMERA_AND_LOCATION)
 private void methodRequiresTwoPermission() {
@@ -590,7 +590,7 @@ if (EasyPermissions.hasPermissions(this, perms)) {
 </code></pre>
 <h3 id="4-android-80运行时权限">4、android 8.0运行时权限</h3>
 <p>对于针对Android O的应用，此行为已被纠正。系统只会授予应用明确请求的权限。然而一旦用户为应用授予某个权限，则所有后续对该权限组中权限的请求都将被自动批准。</p>
-<p>例如，假设某个应用在其清单中列出READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE。应用请求READ_EXTERNAL_STORAGE，并且用户授予了该权限，如果该应用针对的是API级别24或更低级别，系统还会同时授予WRITE_EXTERNAL_STORAGE，因为该权限也属于STORAGE权限组并且也在清单中注册过。如果该应用针对的是Android O，则系统此时仅会授予READ_EXTERNAL_STORAGE，不过在该应用以后申请WRITE_EXTERNAL_STORAGE权限时，系统会立即授予该权限，而不会提示用户。
+<p>例如，假设某个应用在其清单中列出READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE。应用请求READ_EXTERNAL_STORAGE，并且用户授予了该权限，如果该应用针对的是API级别24或更低级别，系统还会同时授予WRITE_EXTERNAL_STORAGE，因为该权限也属于STORAGE权限组并且也在清单中注册过。如果该应用针对的是Android O，则系统此时仅会授予READ_EXTERNAL_STORAGE，不过在该应用以后申请WRITE_EXTERNAL_STORAGE权限时，系统会立即授予该权限，而不会提示用户。<br>
 注意：如果使用了没有授权的权限，会崩溃的</p>
 <p>所以对于8.0权限，我们要做的处理，是尽量把所用到的危险权限全部申请。但是有的权限在不同版本出现，所以要兼容不同的版本，所以要加一个版本的判断。</p>
 <pre><code>归根结底：android M (6.0)以后，申请权限组一个，即表示整个权限组可以用，所以我们干脆，只要api 版本大于23（6.0）,我们申请的权限就是申请整个权限组。这样就兼容了android8.0-------------------为了省事的话可以用AndPermission这个第三方框架，或者自己封装一个。
@@ -603,8 +603,8 @@ if (EasyPermissions.hasPermissions(this, perms)) {
         <link href="https://galiful.github.io/Resume//post/ji-cheng-gitalk-ping-lun">
         </link>
         <updated>2019-05-20T01:07:25.000Z</updated>
-        <content type="html"><![CDATA[<p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk</a>
-存在由于文章标题过长时导致无法初始化（github pages 机制），解决办法在<a href="https://github.com/gitalk/gitalk/issues/124">这</a>
+        <content type="html"><![CDATA[<p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk</a><br>
+存在由于文章标题过长时导致无法初始化（github pages 机制），解决办法在<a href="https://github.com/gitalk/gitalk/issues/124">这</a><br>
 <img src="https://galiful.github.io/Resume//post-images/1558314852687.png" alt=""></p>
 ]]></content>
     </entry>

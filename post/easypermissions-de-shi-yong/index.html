@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1568895045105">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1569457281903">
 <link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://galiful.github.io/Resume/">
-        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1568895045105" class="site-logo">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1569457281903" class="site-logo">
         <h1 class="site-title">Galiful</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -124,15 +124,15 @@
             
             <div class="post-content">
               <p><a href="https://segmentfault.com/a/1190000012247350">https://segmentfault.com/a/1190000012247350</a></p>
-<p>GitHub地址：https://github.com/googlesamp...
-EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了操作的过程。
+<p>GitHub地址：https://github.com/googlesamp...<br>
+EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了操作的过程。<br>
 使用过程： 没有什么先后顺序，下面没有按这个顺序。这么做是可以的，当然还有其他的使用方法</p>
 <blockquote>
-<p>1、builde gradle中依赖
-2、清单文件中声明权限
-3、重写onRequestPermissionsResult()方法，把执行操作给easyPermissions来
-4、通过hasPermissions检查权限，或者原生的也行，然后去申请权限
-5、实现EasyPermissions.PermissionCallbacks接口，重写两个方法，成功或失败
+<p>1、builde gradle中依赖<br>
+2、清单文件中声明权限<br>
+3、重写onRequestPermissionsResult()方法，把执行操作给easyPermissions来<br>
+4、通过hasPermissions检查权限，或者原生的也行，然后去申请权限<br>
+5、实现EasyPermissions.PermissionCallbacks接口，重写两个方法，成功或失败<br>
 6、在成功或者失败方法中编写要具体做的事。</p>
 </blockquote>
 <h3 id="github地址">GitHub地址：</h3>
@@ -141,9 +141,9 @@ EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了�
     compile 'pub.devrel:easypermissions:1.0.1'
 }
 </code></pre>
-<p>(2)再在清单文件中声明要申请的危险权限
+<p>(2)再在清单文件中声明要申请的危险权限<br>
 如果不声明的话，直接在代码中写也能申请成功，但是好想不会弹出询问框，直接就申请了</p>
-<p>(3)申请权限
+<p>(3)申请权限<br>
 可以直接申请</p>
 <pre><code>EasyPermissions.requestPermissions(
                     MainActivity.this,
@@ -152,7 +152,7 @@ EasyPermissions是谷歌封装的一个运行时权限申请的库，简化了�
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.RECORD_AUDIO);
 </code></pre>
-<p>最好还是检查一下权限是否申请：
+<p>最好还是检查一下权限是否申请：<br>
 EasyPermissions.hasPermissions(Context context, @NonNull String… perms)方法来检测一个或者多个权限是否被允许，第二个参数是个可变数组，可以申请多个</p>
 <pre><code>String[] perms = {Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION};
 if (EasyPermissions.hasPermissions(this, perms)) {
@@ -164,13 +164,13 @@ if (EasyPermissions.hasPermissions(this, perms)) {
             RC_CAMERA_AND_LOCATION, perms);
 }
 </code></pre>
-<p>下面来说一个申请权限这个方法：
-EasyPermissions.requestPermissions():
-requestPermissions() 一般用这个四个参数的就可以
-第一个参数：Context对象
-第二个参数：权限弹窗上的文字提示语。告诉用户，这个权限用途。
-第三个参数：这次请求权限的唯一标识请求码，code。
-第四个参数 : 一些系列的权限。
+<p>下面来说一个申请权限这个方法：<br>
+EasyPermissions.requestPermissions():<br>
+requestPermissions() 一般用这个四个参数的就可以<br>
+第一个参数：Context对象<br>
+第二个参数：权限弹窗上的文字提示语。告诉用户，这个权限用途。<br>
+第三个参数：这次请求权限的唯一标识请求码，code。<br>
+第四个参数 : 一些系列的权限。<br>
 这里说一下第二个参数，不是第一次申请系统默认弹出的提示语，而是，我们拒绝后，再次点击申请弹出的对话框，，显示我们设置的提示语，下面有两个按钮，确认和取消，我就不贴图了。</p>
 <p>还有六个参数的，多了两个参数就是，修改我们上面那个确认和取消的字样，你可以干成yes 和no.</p>
 <h3 id="4-重写onrequestpermissionsresult方法把执行操作给easypermissions">4、重写onRequestPermissionsResult()方法，把执行操作给easyPermissions</h3>
@@ -220,9 +220,9 @@ public void onPermissionsDenied(int requestCode, List&lt;String&gt; list) {
 }
 }
 </code></pre>
-<p>接下来就要说一下成功或者失败后的操作了： 申请成功就直接做该做的事就行了，没啥。
-申请如果失败了，这时候有个方法出现了EasyPermissions.somePermissionPermanentlyDenied(this, perms)
-这个方法是谷歌建议的。就是在我们点了不在询问并拒绝，会弹出对话框，告诉用户这个权限时干嘛的，很重要，建议不要拒绝哈哈
+<p>接下来就要说一下成功或者失败后的操作了： 申请成功就直接做该做的事就行了，没啥。<br>
+申请如果失败了，这时候有个方法出现了EasyPermissions.somePermissionPermanentlyDenied(this, perms)<br>
+这个方法是谷歌建议的。就是在我们点了不在询问并拒绝，会弹出对话框，告诉用户这个权限时干嘛的，很重要，建议不要拒绝哈哈<br>
 比如这样：</p>
 <pre><code>@Override
 public void onPermissionsDenied(int requestCode, List&lt;String&gt; perms) {
@@ -264,9 +264,9 @@ public void onPermissionsDenied(int requestCode, List&lt;String&gt; perms) {
 }
 </code></pre>
 <h3 id="6-可选afterpermissiongranted注解">6、(可选)@AfterPermissionGranted()注解</h3>
-<p>使用 AfterPermissioonGranted 注解。这是可选的，但是提供出来是为了方便。如果所有的请求的权限都被授予了，被注解的方法将会被执行，这样做是为了简化通常的请求权限成功之后再调用方法的流程。同时也可以在onPermissionsGranted 的回调中添加逻辑操作：
-比如官网上的这个实例代码：
-这里的方法名可以自己取，主要是权限都申请完，就调用这个方法，执行里面的操作。
+<p>使用 AfterPermissioonGranted 注解。这是可选的，但是提供出来是为了方便。如果所有的请求的权限都被授予了，被注解的方法将会被执行，这样做是为了简化通常的请求权限成功之后再调用方法的流程。同时也可以在onPermissionsGranted 的回调中添加逻辑操作：<br>
+比如官网上的这个实例代码：<br>
+这里的方法名可以自己取，主要是权限都申请完，就调用这个方法，执行里面的操作。<br>
 其实就相当于在onPermissionsGranted()调用这个方法而已:</p>
 <pre><code>@AfterPermissionGranted(RC_CAMERA_AND_LOCATION)
 private void methodRequiresTwoPermission() {
@@ -283,7 +283,7 @@ if (EasyPermissions.hasPermissions(this, perms)) {
 </code></pre>
 <h3 id="4-android-80运行时权限">4、android 8.0运行时权限</h3>
 <p>对于针对Android O的应用，此行为已被纠正。系统只会授予应用明确请求的权限。然而一旦用户为应用授予某个权限，则所有后续对该权限组中权限的请求都将被自动批准。</p>
-<p>例如，假设某个应用在其清单中列出READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE。应用请求READ_EXTERNAL_STORAGE，并且用户授予了该权限，如果该应用针对的是API级别24或更低级别，系统还会同时授予WRITE_EXTERNAL_STORAGE，因为该权限也属于STORAGE权限组并且也在清单中注册过。如果该应用针对的是Android O，则系统此时仅会授予READ_EXTERNAL_STORAGE，不过在该应用以后申请WRITE_EXTERNAL_STORAGE权限时，系统会立即授予该权限，而不会提示用户。
+<p>例如，假设某个应用在其清单中列出READ_EXTERNAL_STORAGE和WRITE_EXTERNAL_STORAGE。应用请求READ_EXTERNAL_STORAGE，并且用户授予了该权限，如果该应用针对的是API级别24或更低级别，系统还会同时授予WRITE_EXTERNAL_STORAGE，因为该权限也属于STORAGE权限组并且也在清单中注册过。如果该应用针对的是Android O，则系统此时仅会授予READ_EXTERNAL_STORAGE，不过在该应用以后申请WRITE_EXTERNAL_STORAGE权限时，系统会立即授予该权限，而不会提示用户。<br>
 注意：如果使用了没有授权的权限，会崩溃的</p>
 <p>所以对于8.0权限，我们要做的处理，是尽量把所用到的危险权限全部申请。但是有的权限在不同版本出现，所以要兼容不同的版本，所以要加一个版本的判断。</p>
 <pre><code>归根结底：android M (6.0)以后，申请权限组一个，即表示整个权限组可以用，所以我们干脆，只要api 版本大于23（6.0）,我们申请的权限就是申请整个权限组。这样就兼容了android8.0-------------------为了省事的话可以用AndPermission这个第三方框架，或者自己封装一个。

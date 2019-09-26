@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1568895045105">
+<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1569457281903">
 <link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://galiful.github.io/Resume/">
-        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1568895045105" class="site-logo">
+        <img src="https://galiful.github.io/Resume//images/avatar.png?v=1569457281903" class="site-logo">
         <h1 class="site-title">Galiful</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -126,41 +126,41 @@
               <h2 id="记一次集成百度facesdk中遇到的知识盲点">记一次集成百度facesdk中遇到的知识盲点。</h2>
 <p>一些app通过继承application作为 应用程序入口调用，避免手机内存过小,杀死后台进程（在手机设置里面，对应于某一个应用，虽然没有启动，但是上面有一个终止按钮，说明这个应用时启动的，只是里面没有Activity,所以说使用android退出把一个应用退出，实际上他所对应的Application是没有退出的（因为他的生命周期最长），只是对应的Activity退出了而已）</p>
 <h3 id="认识application">认识application：</h3>
-<p>android开发文档中关于application的描述 :
+<p>android开发文档中关于application的描述 :<br>
 Base class for those who need to maintain global application state. You can provide your own implementation by specifying its name in your AndroidManifest.xml's &lt; application&gt; tag, which will cause that class to be instantiated for you when the process for your application/package is created.</p>
 <h4 id="application-配置全局context">Application 配置全局Context</h4>
 <p>第一步、写一个全局的单例模式的MyApplication继承自Application 覆盖onCreate ，在这个方法里面实例化Application,并且值是全局的,可以使用Context的 getApplicationContext或者Activity的getApplication方法来获得一个application对象来拿到它。</p>
 <ol>
 <li>
-<p>oncreate方法
-application对应的也有一个onCreate,这个才是真正的入口，不过一般我们使用的是Activity的onCreate方法作为入口使用了。
-<em>开发文档描述</em>：
-* Called when the application is starting, before any other application
-* objects have been created.  Implementations should be as quick as
-* possible (for example using lazy initialization of state) since the time
-* spent in this function directly impacts the performance of starting the
-* first activity, service, or receiver in a process.
+<p>oncreate方法<br>
+application对应的也有一个onCreate,这个才是真正的入口，不过一般我们使用的是Activity的onCreate方法作为入口使用了。<br>
+<em>开发文档描述</em>：<br>
+* Called when the application is starting, before any other application<br>
+* objects have been created.  Implementations should be as quick as<br>
+* possible (for example using lazy initialization of state) since the time<br>
+* spent in this function directly impacts the performance of starting the<br>
+* first activity, service, or receiver in a process.<br>
 * If you override this method, be sure to call super.onCreate()</p>
 </li>
 <li>
-<p>onConfigurationChanged方法
-当屏幕方向发生改变了，就会调用这个方法，并且对应的Activity中也会调用对应的方法
+<p>onConfigurationChanged方法<br>
+当屏幕方向发生改变了，就会调用这个方法，并且对应的Activity中也会调用对应的方法<br>
 因此不必再次处理</p>
 </li>
 </ol>
-<p>第二步、配置全局的Context
+<p>第二步、配置全局的Context<br>
 <code>&lt;application android:name=&quot;com.example.demo.MyApplication&quot; &gt;&lt;/application&gt;</code></p>
 <p>第三步、使用的时候用的时候根据类的名称访问Context，manifest文件<application>有一项是android:name属性，一般你新建一个android项目的话，这个name属性是没有的，如果想要使用自定义的MyApplication的话，就要添加上一个name属性，如上面显示的那样，然后自定义一个类：MyApplication来继承application即可</p>
 <h4 id="android程序的入口点">Android程序的入口点</h4>
 <p>Android使用Google Dalvik VM，相对于传统Java VM而言有着很大的不同，在Sun的Java体系中入口点和标准c语言一样是main()，而每个Android程序都包含着一个Application实例，一个Application实例中有多个Activity、Service、ContentProvider或Broadcast Receiver。因为大部分的应用都包含Activity所以，说很多网友认为是Activity的onCreate，但是你没有发现你的工程中有多个Activity吗? 你可能没有见过没有Activity的Android应用吧。其实在android.app.Application这个包的onCreate才是真正的Android入口点，只不过大多数开发者无需重写该类，他的继承关系如下图:</p>
-<p>java.lang.Object
-? android.content.Context
-? android.content.ContextWrapper
+<p>java.lang.Object<br>
+? android.content.Context<br>
+? android.content.ContextWrapper<br>
 ? android.app.Application</p>
 <p>android.app.Application类包含了4个公开的方法</p>
-<p>void  onConfigurationChanged(Configuration newConfig)
-void  onCreate()  //这里才是真正的入口点。
-void  onLowMemory()
+<p>void  onConfigurationChanged(Configuration newConfig)<br>
+void  onCreate()  //这里才是真正的入口点。<br>
+void  onLowMemory()<br>
 void  onTerminate()</p>
 <p>所以希望大家，记住真正的Android入口点是application的main，你可以看下androidmanifest.xml的包含关系就清楚了，并不是每个应用都必须有Activity的。</p>
 <pre><code>问题一：
@@ -170,8 +170,8 @@ void  onTerminate()</p>
 <pre><code>1.继承：假如你有两个application类：ApplicationOne.java和ApplicationTwo.java
 </code></pre>
 <p>ApplicationOne才是你真正的程序入口，ApplicationTwo是第三方sdk或库里定义的，那么你可以把ApplicationOne继承于ApplicationTwo。</p>
-<p>2.声明：在AndroidManifest.xml里声明的时候，只需要声明ApplicationOne就行了。因为AndroidManifest.xml中第一个注册的Application才真正会被PackageManager解析，才是有效的。
-<img src="https://galiful.github.io/Resume//post-images/1559609327818.png" alt="">
+<p>2.声明：在AndroidManifest.xml里声明的时候，只需要声明ApplicationOne就行了。因为AndroidManifest.xml中第一个注册的Application才真正会被PackageManager解析，才是有效的。<br>
+<img src="https://galiful.github.io/Resume//post-images/1559609327818.png" alt=""><br>
 详见：<a href="https://developer.android.google.cn/reference/android/app/Application?hl=en">Application  |  Android Developers</a></p>
 
             </div>
