@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>QWebEngine之与webkit | Galiful</title>
+<title>android 线程池使用 | Galiful</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -108,41 +108,20 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">QWebEngine之与webkit</h2>
-            <div class="post-date">2019-08-28</div>
+            <h2 class="post-title">android 线程池使用</h2>
+            <div class="post-date">2019-10-15</div>
             
             <div class="post-content">
-              <p>自从Qt5.6后引入了QWebEngine，摒弃了原先的QWebkit，这是一款基于chrome浏览器内核引擎，Qt webenginewidgets模块中提供了QWebEngineView这个视图控件来很方便的加载和显示网页，仅需如下几行：</p>
-<pre><code>QWebEngineView* webview = new QWebEngineView;
-webview-&gt;load(QUrl(&quot;https://www.baidu.com/&quot;));
-webview-&gt;show();
-</code></pre>
-<p>与webkit主要区别：<br>
-<img src="https://galiful.github.io/Resume//post-images/1566950985824.png" alt=""><br>
-在我的项目里：webkit不能执行网页里js脚本（也可能是脚本不兼容）~而webengine确可以。</p>
-<p>webengine尽管功能更强，但用到QtWebEngineProcess.exe 占用内存更大</p>
-<pre><code>QWebEngineProfile* engineProfile = ui.webEngineView-&gt;page()-&gt;profile();
-	engineProfile-&gt;clearHttpCache(); //删除缓存
-	QWebEngineCookieStore* cookie = ui.webEngineView-&gt;page()-&gt;profile()-&gt;cookieStore();
-	cookie-&gt;deleteAllCookies();//删除cookie 
-</code></pre>
-<p>刷新时执行此操作，明显看到内存降低然后随网页打开再回升的一个过程，证明可用~</p>
-<pre><code>将QtWebEngineProcess.exe与主进程合二为一。
-qputenv(&quot;QTWEBENGINE_CHROMIUM_FLAGS&quot;, &quot;--single-process&quot;);
-</code></pre>
-<p>QWebEngineView的一些设置方法：</p>
-<pre><code>ui.webEngineView-&gt;settings()-&gt;setAttribute(QWebEngineSettings::ShowScrollBars, false);//隐藏滚动条
-</code></pre>
-<p><a href="https://doc.qt.io/qt-5/qwebenginesettings.html">https://doc.qt.io/qt-5/qwebenginesettings.html</a></p>
+              <p>https://www.jianshu.com/p/646e3f2f53d1</p>
 
             </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://galiful.github.io/Resume//post/yi-ge-ji-yu-qt-de-zhuo-mian-ying-yong">
+                <a href="https://galiful.github.io/Resume//post/qt-wu-bian-kuang-chuang-kou-tuo-dong-yi-dong">
                   <h3 class="post-title">
-                    一个基于qt的桌面应用开发经历
+                    QT 无边框窗口-拖动移动
                   </h3>
                 </a>
               </div>

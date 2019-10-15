@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://galiful.github.io/Resume/</id>
     <title>Galiful</title>
-    <updated>2019-10-08T08:52:41.592Z</updated>
+    <updated>2019-10-15T02:03:10.326Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://galiful.github.io/Resume/"/>
     <link rel="self" href="https://galiful.github.io/Resume//atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://galiful.github.io/Resume//images/avatar.png</logo>
     <icon>https://galiful.github.io/Resume//favicon.ico</icon>
     <rights>All rights reserved 2019, Galiful</rights>
+    <entry>
+        <title type="html"><![CDATA[android 线程池使用]]></title>
+        <id>https://galiful.github.io/Resume//post/OyXc45CxE</id>
+        <link href="https://galiful.github.io/Resume//post/OyXc45CxE">
+        </link>
+        <updated>2019-10-15T01:56:45.000Z</updated>
+        <content type="html"><![CDATA[<p>https://www.jianshu.com/p/646e3f2f53d1</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[QT 无边框窗口-拖动移动]]></title>
         <id>https://galiful.github.io/Resume//post/qt-wu-bian-kuang-chuang-kou-tuo-dong-yi-dong</id>
@@ -595,18 +604,6 @@ if (EasyPermissions.hasPermissions(this, perms)) {
 <p>所以对于8.0权限，我们要做的处理，是尽量把所用到的危险权限全部申请。但是有的权限在不同版本出现，所以要兼容不同的版本，所以要加一个版本的判断。</p>
 <pre><code>归根结底：android M (6.0)以后，申请权限组一个，即表示整个权限组可以用，所以我们干脆，只要api 版本大于23（6.0）,我们申请的权限就是申请整个权限组。这样就兼容了android8.0-------------------为了省事的话可以用AndPermission这个第三方框架，或者自己封装一个。
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[集成gitalk评论]]></title>
-        <id>https://galiful.github.io/Resume//post/ji-cheng-gitalk-ping-lun</id>
-        <link href="https://galiful.github.io/Resume//post/ji-cheng-gitalk-ping-lun">
-        </link>
-        <updated>2019-05-20T01:07:25.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">gitalk</a><br>
-存在由于文章标题过长时导致无法初始化（github pages 机制），解决办法在<a href="https://github.com/gitalk/gitalk/issues/124">这</a><br>
-<img src="https://galiful.github.io/Resume//post-images/1558314852687.png" alt=""></p>
 ]]></content>
     </entry>
 </feed>
