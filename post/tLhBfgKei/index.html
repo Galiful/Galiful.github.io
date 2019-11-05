@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>个人随笔转移到Github pages | Galiful</title>
+<title>Python 爬虫初识 | Galiful</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -108,29 +108,29 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">个人随笔转移到Github pages</h2>
-            <div class="post-date">2019-05-10</div>
+            <h2 class="post-title">Python 爬虫初识</h2>
+            <div class="post-date">2019-11-05</div>
             
             <div class="post-content">
-              <p>今天2019年5月10日<br>
-将之前在<a href="https://www.jianshu.com/u/5b0d57ea33fe">简书</a>的个人转载也好，自己学习记录也好，转移到Github 开放仓库<a href="https://github.com/Galiful/Resume">Resume</a>中</p>
+              <p>一、什么是爬虫<br>
+爬虫：一段自动抓取互联网信息的程序，从互联网上抓取对于我们有价值的信息。</p>
+<p>二、Python爬虫架构<br>
+Python 爬虫架构主要由五个部分组成，分别是调度器、URL管理器、网页下载器、网页解析器、应用程序（爬取的有价值数据）。</p>
+<p>·调度器：相当于一台电脑的CPU，主要负责调度URL管理器、下载器、解析器之间的协调工作。<br>
+URL管理器：包括待爬取的URL地址和已爬取的URL地址，防止重复抓取URL和循环抓取URL，实现URL管理器主要用三种方式，通过内存、数据库、缓存数据库来实现。<br>
+·网页下载器：通过传入一个URL地址来下载网页，将网页转换成一个字符串，网页下载器有urllib2（Python官方基础模块）包括需要登录、代理、和cookie，requests(第三方包)<br>
+·网页解析器：将一个网页字符串进行解析，可以按照我们的要求来提取出我们有用的信息，也可以根据DOM树的解析方式来解析。网页解析器有正则表达式（直观，将网页转成字符串通过模糊匹配的方式来提取有价值的信息，当文档比较复杂的时候，该方法提取数据的时候就会非常的困难）、html.parser（Python自带的）、beautifulsoup（第三方插件，可以使用Python自带的html.parser进行解析，也可以使用lxml进行解析，相对于其他几种来说要强大一些）、lxml（第三方插件，可以解析 xml 和 HTML），html.parser 和 beautifulsoup 以及 lxml 都是以 DOM 树的方式进行解析的。<br>
+·应用程序：就是从网页中提取的有用数据组成的一个应用。<br>
+<img src="https://www.runoob.com/wp-content/uploads/2018/07/20170427113109368.png" alt=""></p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://galiful.github.io/Resume//tag/BuscMwe7r" class="tag">
-                    Github
-                  </a>
-                
-              </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://galiful.github.io/Resume//post/android-documentation-sui-bi">
+                <a href="https://galiful.github.io/Resume//post/e5G5EDjzZ">
                   <h3 class="post-title">
-                    Android Documentation 随笔
+                    Python 学习记录
                   </h3>
                 </a>
               </div>
