@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://galiful.github.io/Resume/</id>
     <title>Galiful</title>
-    <updated>2019-11-05T01:40:23.770Z</updated>
+    <updated>2020-02-28T05:33:20.800Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://galiful.github.io/Resume/"/>
     <link rel="self" href="https://galiful.github.io/Resume//atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://galiful.github.io/Resume//images/avatar.png</logo>
     <icon>https://galiful.github.io/Resume//favicon.ico</icon>
-    <rights>All rights reserved 2019, Galiful</rights>
+    <rights>All rights reserved 2020, Galiful</rights>
     <entry>
         <title type="html"><![CDATA[Python 爬虫初识]]></title>
         <id>https://galiful.github.io/Resume//post/tLhBfgKei</id>
