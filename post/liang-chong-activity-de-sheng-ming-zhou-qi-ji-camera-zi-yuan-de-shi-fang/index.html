@@ -4,9 +4,9 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>两种Activity的生命周期及Camera资源的释放 | Galiful</title>
-<link rel="shortcut icon" href="https://galiful.github.io/Resume//favicon.ico?v=1582870485510">
+<link rel="shortcut icon" href="https://galiful.github.io//favicon.ico?v=1582871221961">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-<link rel="stylesheet" href="https://galiful.github.io/Resume//styles/main.css">
+<link rel="stylesheet" href="https://galiful.github.io//styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -94,7 +94,7 @@
                         · 2019-06-10 ·
                     </time>
                     
-                        <a href="https://galiful.github.io/Resume//tag/q-BOAHw9o" class="post-tags">
+                        <a href="https://galiful.github.io//tag/q-BOAHw9o" class="post-tags">
                             # Android
                         </a>
                     
@@ -153,10 +153,10 @@ onStop()<br>
 onDestroy()</p>
 <p><strong>结论</strong>：<strong>dialogActivity不会执行onStop、onRestart()、 onStart()</strong>，导致相机资源没有正常回调（也许可以通过修改相机类修复）<br>
 下面是项目中（asrDemo→DetectLoginActivity）生命周期log：<br>
-<img src="https://galiful.github.io/Resume//post-images/1560134889431.png" alt=""><br>
+<img src="https://galiful.github.io//post-images/1560134889431.png" alt=""><br>
 可见在这台设备上，在执行AsrDemo onPause后就执行了DetectLoginActivity onCreate，如果没有合理释放资源必然出现占用错误（camera can not connect 等...）<br>
 当DetectLoginActivity为对话框式活动时生命周期log：<br>
-<img src="https://galiful.github.io/Resume//post-images/1560134787747.png" alt=""><br>
+<img src="https://galiful.github.io//post-images/1560134787747.png" alt=""><br>
 <strong>这次跳转过程asrDemo中camera并没有回调发生</strong><br>
 在asrDemo、DetectLoginActivity中camera释放放在onPause()，以在asrDemo跳转和DetectLoginActivity back时释放。</p>
 <h3 id="小结">小结</h3>
@@ -171,7 +171,7 @@ onDestroy()</p>
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://galiful.github.io/Resume//post/guan-yu-application-de-ji-cheng" class="post-title gt-a-link">
+                <a href="https://galiful.github.io//post/guan-yu-application-de-ji-cheng" class="post-title gt-a-link">
                     关于application的继承
                 </a>
             </div>
@@ -228,7 +228,7 @@ onDestroy()</p>
     </div>
     Powered by <a
             href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
- | <a href="https://galiful.github.io/Resume//atom.xml" target="_blank">RSS</a>
+ | <a href="https://galiful.github.io//atom.xml" target="_blank">RSS</a>
 </div>
 
 <script>

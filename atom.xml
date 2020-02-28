@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://galiful.github.io/Resume/</id>
+    <id>https://galiful.github.io/</id>
     <title>Galiful</title>
-    <updated>2020-02-28T06:14:48.681Z</updated>
+    <updated>2020-02-28T06:27:50.069Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://galiful.github.io/Resume/"/>
-    <link rel="self" href="https://galiful.github.io/Resume//atom.xml"/>
+    <link rel="alternate" href="https://galiful.github.io/"/>
+    <link rel="self" href="https://galiful.github.io//atom.xml"/>
     <subtitle>Keep Alive</subtitle>
-    <logo>https://galiful.github.io/Resume//images/avatar.png</logo>
-    <icon>https://galiful.github.io/Resume//favicon.ico</icon>
+    <logo>https://galiful.github.io//images/avatar.png</logo>
+    <icon>https://galiful.github.io//favicon.ico</icon>
     <rights>All rights reserved 2020, Galiful</rights>
     <entry>
         <title type="html"><![CDATA[Activity的Flags]]></title>
-        <id>https://galiful.github.io/Resume//post/Mpemb9MW9</id>
-        <link href="https://galiful.github.io/Resume//post/Mpemb9MW9">
+        <id>https://galiful.github.io//post/Mpemb9MW9</id>
+        <link href="https://galiful.github.io//post/Mpemb9MW9">
         </link>
         <updated>2020-02-28T05:57:01.000Z</updated>
         <content type="html"><![CDATA[<p>Activity的FlagsActivity的Flags有很多，这里主要分析一些比较常用的标记位。标记位的作用很多，有的标记位可以设定Activity的启动模式，比如FLAG_ACTIVITY_NEW_TASK和FLAG_ACTIVITY_SINGLE_TOP等；还有的标记位可以影响Activity的运行状态，比如FLAG_ACTIVITY_CLEAR_TOP和FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS等。下面主要介绍几个比较常用的标记位，剩下的标记位读者可以查看官方文档去了解，大部分情况下，我们不需要为Activity指定标记位，因此，对于标记位理解即可。在使用标记位的时候，要注意有些标记位是系统内部使用的，应用程序不需要去手动设置这些标记位以防出现问题。</p>
@@ -26,13 +26,13 @@
 <h3 id="flag_activity_exclude_from_recents">FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</h3>
 <p>具有这个标记的Activity不会出现在历史Activity的列表中，当某些情况下我们不希望用户通过历史列表回到我们的Activity的时候这个标记比较有用。它等同于在XML中指定Activity的属性android:excludeFromRecents=&quot;true&quot;。<br>
 --《Android开发艺术探索》<br>
-<img src="https://galiful.github.io/Resume//post-images/1582869828475.png" alt=""></p>
+<img src="https://galiful.github.io//post-images/1582869828475.png" alt=""></p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Python 爬虫初识]]></title>
-        <id>https://galiful.github.io/Resume//post/tLhBfgKei</id>
-        <link href="https://galiful.github.io/Resume//post/tLhBfgKei">
+        <id>https://galiful.github.io//post/tLhBfgKei</id>
+        <link href="https://galiful.github.io//post/tLhBfgKei">
         </link>
         <updated>2019-11-05T01:37:49.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
@@ -50,8 +50,8 @@ URL管理器：包括待爬取的URL地址和已爬取的URL地址，防止重�
     </entry>
     <entry>
         <title type="html"><![CDATA[Python 学习记录]]></title>
-        <id>https://galiful.github.io/Resume//post/e5G5EDjzZ</id>
-        <link href="https://galiful.github.io/Resume//post/e5G5EDjzZ">
+        <id>https://galiful.github.io//post/e5G5EDjzZ</id>
+        <link href="https://galiful.github.io//post/e5G5EDjzZ">
         </link>
         <updated>2019-10-15T08:49:56.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://github.com/Galiful/Pydemo/blob/master/Pydemo.py">Python 学习记录</a></p>
@@ -59,8 +59,8 @@ URL管理器：包括待爬取的URL地址和已爬取的URL地址，防止重�
     </entry>
     <entry>
         <title type="html"><![CDATA[android 线程池使用]]></title>
-        <id>https://galiful.github.io/Resume//post/OyXc45CxE</id>
-        <link href="https://galiful.github.io/Resume//post/OyXc45CxE">
+        <id>https://galiful.github.io//post/OyXc45CxE</id>
+        <link href="https://galiful.github.io//post/OyXc45CxE">
         </link>
         <updated>2019-10-15T01:56:45.000Z</updated>
         <content type="html"><![CDATA[<p>https://www.jianshu.com/p/646e3f2f53d1</p>
@@ -68,8 +68,8 @@ URL管理器：包括待爬取的URL地址和已爬取的URL地址，防止重�
     </entry>
     <entry>
         <title type="html"><![CDATA[QT 无边框窗口-拖动移动]]></title>
-        <id>https://galiful.github.io/Resume//post/qt-wu-bian-kuang-chuang-kou-tuo-dong-yi-dong</id>
-        <link href="https://galiful.github.io/Resume//post/qt-wu-bian-kuang-chuang-kou-tuo-dong-yi-dong">
+        <id>https://galiful.github.io//post/qt-wu-bian-kuang-chuang-kou-tuo-dong-yi-dong</id>
+        <link href="https://galiful.github.io//post/qt-wu-bian-kuang-chuang-kou-tuo-dong-yi-dong">
         </link>
         <updated>2019-08-30T04:09:37.000Z</updated>
         <content type="html"><![CDATA[<pre><code>//去掉标题栏，无边框窗口，区别是第一个可以鼠标缩放窗口，但上方有一个白条故未采用
@@ -104,8 +104,8 @@ void Qwebengine::mouseMoveEvent(QMouseEvent* event)
     </entry>
     <entry>
         <title type="html"><![CDATA[QWebEngine之与webkit]]></title>
-        <id>https://galiful.github.io/Resume//post/qwebengine-zhi-yu-webkit</id>
-        <link href="https://galiful.github.io/Resume//post/qwebengine-zhi-yu-webkit">
+        <id>https://galiful.github.io//post/qwebengine-zhi-yu-webkit</id>
+        <link href="https://galiful.github.io//post/qwebengine-zhi-yu-webkit">
         </link>
         <updated>2019-08-28T00:04:02.000Z</updated>
         <content type="html"><![CDATA[<p>自从Qt5.6后引入了QWebEngine，摒弃了原先的QWebkit，这是一款基于chrome浏览器内核引擎，Qt webenginewidgets模块中提供了QWebEngineView这个视图控件来很方便的加载和显示网页，仅需如下几行：</p>
@@ -114,7 +114,7 @@ webview-&gt;load(QUrl(&quot;https://www.baidu.com/&quot;));
 webview-&gt;show();
 </code></pre>
 <p>与webkit主要区别：<br>
-<img src="https://galiful.github.io/Resume//post-images/1566950985824.png" alt=""><br>
+<img src="https://galiful.github.io//post-images/1566950985824.png" alt=""><br>
 在我的项目里：webkit不能执行网页里js脚本（也可能是脚本不兼容）~而webengine确可以。</p>
 <p>webengine尽管功能更强，但用到QtWebEngineProcess.exe 占用内存更大</p>
 <pre><code>QWebEngineProfile* engineProfile = ui.webEngineView-&gt;page()-&gt;profile();
@@ -134,8 +134,8 @@ qputenv(&quot;QTWEBENGINE_CHROMIUM_FLAGS&quot;, &quot;--single-process&quot;);
     </entry>
     <entry>
         <title type="html"><![CDATA[一个基于qt的桌面应用开发经历]]></title>
-        <id>https://galiful.github.io/Resume//post/yi-ge-ji-yu-qt-de-zhuo-mian-ying-yong</id>
-        <link href="https://galiful.github.io/Resume//post/yi-ge-ji-yu-qt-de-zhuo-mian-ying-yong">
+        <id>https://galiful.github.io//post/yi-ge-ji-yu-qt-de-zhuo-mian-ying-yong</id>
+        <link href="https://galiful.github.io//post/yi-ge-ji-yu-qt-de-zhuo-mian-ying-yong">
         </link>
         <updated>2019-08-26T05:20:18.000Z</updated>
         <content type="html"><![CDATA[<p>这一个月没有更新日志和git。。。<br>
@@ -149,8 +149,8 @@ qputenv(&quot;QTWEBENGINE_CHROMIUM_FLAGS&quot;, &quot;--single-process&quot;);
     </entry>
     <entry>
         <title type="html"><![CDATA[App内异常捕获并上传]]></title>
-        <id>https://galiful.github.io/Resume//post/app-nei-yi-chang-bu-huo</id>
-        <link href="https://galiful.github.io/Resume//post/app-nei-yi-chang-bu-huo">
+        <id>https://galiful.github.io//post/app-nei-yi-chang-bu-huo</id>
+        <link href="https://galiful.github.io//post/app-nei-yi-chang-bu-huo">
         </link>
         <updated>2019-06-17T00:44:10.000Z</updated>
         <content type="html"><![CDATA[<ol>
@@ -244,8 +244,8 @@ crashHandler.init(this);
     </entry>
     <entry>
         <title type="html"><![CDATA[人生苦短，我有Python]]></title>
-        <id>https://galiful.github.io/Resume//post/ren-sheng-ku-duan-wo-you-python</id>
-        <link href="https://galiful.github.io/Resume//post/ren-sheng-ku-duan-wo-you-python">
+        <id>https://galiful.github.io//post/ren-sheng-ku-duan-wo-you-python</id>
+        <link href="https://galiful.github.io//post/ren-sheng-ku-duan-wo-you-python">
         </link>
         <updated>2019-06-15T05:31:04.000Z</updated>
         <content type="html"><![CDATA[<h2 id="20196">2019.6</h2>
@@ -279,8 +279,8 @@ crashHandler.init(this);
     </entry>
     <entry>
         <title type="html"><![CDATA[Handler类中发送消息-post()和postDelay()方法]]></title>
-        <id>https://galiful.github.io/Resume//post/handler-lei-zhong-fa-song-xiao-xi-posthe-postdelayfang-fa</id>
-        <link href="https://galiful.github.io/Resume//post/handler-lei-zhong-fa-song-xiao-xi-posthe-postdelayfang-fa">
+        <id>https://galiful.github.io//post/handler-lei-zhong-fa-song-xiao-xi-posthe-postdelayfang-fa</id>
+        <link href="https://galiful.github.io//post/handler-lei-zhong-fa-song-xiao-xi-posthe-postdelayfang-fa">
         </link>
         <updated>2019-06-10T09:49:27.000Z</updated>
         <content type="html"><![CDATA[<p><img src="https://img-blog.csdn.net/20180326181513374?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTEwMTE3Mw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br>
